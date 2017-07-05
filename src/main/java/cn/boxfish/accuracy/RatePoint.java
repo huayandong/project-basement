@@ -46,7 +46,11 @@ public class RatePoint {
 
         List<Integer> list = Lists.newArrayList(1, 2, 3, 4);
         List<Integer> list2 = Lists.newArrayList();
-        List<Integer> integerList = Collections.emptyList();
+
+        List<Integer> integerList = Collections.emptyList();  //返回一个不可变的集合
+        integerList.add(12);
+
+
         System.out.println(list2.isEmpty());
 
         Map<String, String> map = Maps.newHashMap();
