@@ -1,5 +1,7 @@
 package cn.boxfish.enummeration;
 
+import static cn.boxfish.enummeration.Main.Weeks.FRI;
+
 /**
  * Created by huayandong on 17/7/10.
  */
@@ -12,8 +14,23 @@ public class Main {
         Integer age = EnumType.Sikong.getAge();
         String name = EnumType.Sikong.getName();
         System.out.println("sikong:" + name + ",age:" + age);
+
+        Weeks[] values = Weeks.values();
+        for (Weeks value : values) {
+            System.out.println(value);
+        }
+
+        Weeks mon = Weeks.MON;
+        System.out.println("this is MON?:" + mon);
+
+        System.out.println("FRI:" + FRI);
+
     }
 
+
+    public enum Weeks {
+        MON, TUE, WED, THU, FRI, SAT, SUN;
+    }
 
     public enum EnumType {
 
