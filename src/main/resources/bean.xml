@@ -3,9 +3,18 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="user" class="cn.boxfish.ioc.domain.User">
-        <property name="username" value="Simayi"/>
-        <property name="age" value="23"/>
-    </bean>
+    <bean id="userDao" class="cn.boxfish.ioc.domain.UserDao"/>
 
+    <!--<bean id="user" class="cn.boxfish.ioc.domain.User">-->
+    <!--<property name="username" value="Simayi"/>-->
+    <!--<property name="age" value="23"/>-->
+    <!--<property name="userDao" ref="userDao" />-->
+    <!--</bean>-->
+
+    <!--有参构造方式：-->
+    <bean id="user" class="cn.boxfish.ioc.domain.User">
+        <constructor-arg name="age" value="27"/>
+        <constructor-arg name="username" value="Simayi"/>
+        <constructor-arg name="userDao" ref="userDao"/>
+    </bean>
 </beans>

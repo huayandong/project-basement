@@ -18,7 +18,21 @@ public class User {
         this.age = age;
     }
 
+    private UserDao userDao;
+
+    public void setUserDao(UserDao userDao) {
+        this.userDao = userDao;
+    }
+
     public void add() {
         System.out.println("name is: " + username + ",age is: " + age);
+        userDao.domain();
+    }
+
+    //有参构造方式赋值
+    public User(String username, Integer age, UserDao userDao) {
+        this.username = username;
+        this.age = age;
+        this.userDao = userDao;
     }
 }
