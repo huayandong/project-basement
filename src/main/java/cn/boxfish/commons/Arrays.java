@@ -1,6 +1,11 @@
 package cn.boxfish.commons;
 
+import com.google.common.collect.Lists;
 import org.apache.commons.lang3.ArrayUtils;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Created by huayandong on 17/7/7.
@@ -24,6 +29,28 @@ public class Arrays {
         System.out.println("b is empty?:" + emptyb);
         System.out.println(java.util.Arrays.toString(b));
 
+        testArray();
+
+    }
+
+    public static void testArray() {
+
+        List<String> list = Lists.newArrayList("12", "23", "34");
+
+        //将List集合转换成数组
+        Object[] objects = list.toArray();
+        System.out.println(ArrayUtils.toString(objects));
+
+
+        String[] arr = new String[2];
+        arr[0] = "张三";
+        arr[1] = "司马懿";
+        //将数组转换成list集合
+        List<String> list1 = java.util.Arrays.asList(arr);
+
+        //将数组转换成set集合
+        Set set = new HashSet(list1);
+        set.forEach(System.out::println);
 
     }
 }
