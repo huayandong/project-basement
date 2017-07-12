@@ -43,6 +43,10 @@ public class UserService {
         System.out.println("name is: " + username + ",age is: " + age);
         System.out.println(ArrayUtils.toString(array));
         System.out.println(map.toString());
+        map.forEach((s, i) -> {
+            System.out.println("key :" + s);
+            System.out.println("value :" + i);
+        });
         userDao.domain();
     }
 
