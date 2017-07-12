@@ -15,13 +15,10 @@ public class TestAopMain {
         HelloAop helloAopImpl2 = (HelloAop) context.getBean("helloAopImpl2");
 
         helloAopImpl1.printHello();
-        System.out.println("111...");
         helloAopImpl1.doMain();
 
-        System.out.println();
         System.out.println("---------------");
         helloAopImpl2.printHello();
-        System.out.println("222...");
         helloAopImpl2.doMain();
     }
 }

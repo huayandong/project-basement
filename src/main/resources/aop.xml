@@ -6,12 +6,18 @@
     <bean id="helloAopImpl1" class="cn.boxfish.aop.HelloAopImpl1"/>
     <bean id="helloAopImpl2" class="cn.boxfish.aop.HelloAopImpl2"/>
     <bean id="timeHandler" class="cn.boxfish.aop.TimeHandler"/>
+    <bean id="logHandler" class="cn.boxfish.aop.LogHandler"/>
 
     <aop:config>
-        <aop:aspect id="time" ref="timeHandler">
-            <aop:pointcut id="addAllMethod" expression="execution(* cn.boxfish.aop.HelloAop.*(..))"/>
+        <aop:aspect id="time" ref="timeHandler" order="2">
+            <aop:pointcut id="addAllMethod" expression="execution(* cn.boxfish.aop.HelloAop.print*(..))"/>
             <aop:before method="printTime" pointcut-ref="addAllMethod"/>
             <aop:after method="printTime" pointcut-ref="addAllMethod"/>
+        </aop:aspect>
+        <aop:aspect id="log" ref="logHandler" order="1">
+            <aop:pointcut id="addLog" expression="execution(* cn.boxfish.aop.HelloAop.do*(..))"/>
+            <aop:before method="printLogBeforeMethod" pointcut-ref="addLog"/>
+            <aop:after method="printLogAfterMethod" pointcut-ref="addLog"/>
         </aop:aspect>
     </aop:config>
 </beans>
