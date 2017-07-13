@@ -1,4 +1,4 @@
-package cn.taike.aop;
+package cn.taike.aops.core;
 
 /**
  * Created by huayandong on 17/7/12.

@@ -1,5 +1,6 @@
-package cn.taike.aop;
+package cn.taike.aops;
 
+import cn.taike.aops.core.HelloAop;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 

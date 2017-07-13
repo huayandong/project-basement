@@ -3,19 +3,19 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
-    <bean id="helloAopImpl1" class="cn.taike.aop.HelloAopImpl1"/>
-    <bean id="helloAopImpl2" class="cn.taike.aop.HelloAopImpl2"/>
-    <bean id="timeHandler" class="cn.taike.aop.TimeHandler"/>
-    <bean id="logHandler" class="cn.taike.aop.LogHandler"/>
+    <bean id="helloAopImpl1" class="cn.taike.aops.core.HelloAopImpl1"/>
+    <bean id="helloAopImpl2" class="cn.taike.aops.core.HelloAopImpl2"/>
+    <bean id="timeHandler" class="cn.taike.aops.core.TimeHandler"/>
+    <bean id="logHandler" class="cn.taike.aops.core.LogHandler"/>
 
     <aop:config>
         <aop:aspect id="time" ref="timeHandler" order="2">
-            <aop:pointcut id="addAllMethod" expression="execution(* cn.taike.aop.HelloAop.print*(..))"/>
+            <aop:pointcut id="addAllMethod" expression="execution(* cn.taike.aops.core.HelloAop.print*(..))"/>
             <aop:before method="printTime" pointcut-ref="addAllMethod"/>
             <aop:after method="printTime" pointcut-ref="addAllMethod"/>
         </aop:aspect>
         <aop:aspect id="log" ref="logHandler" order="1">
-            <aop:pointcut id="addLog" expression="execution(* cn.taike.aop.HelloAop.do*(..))"/>
+            <aop:pointcut id="addLog" expression="execution(* cn.taike.aops.core.HelloAop.do*(..))"/>
             <aop:before method="printLogBeforeMethod" pointcut-ref="addLog"/>
             <aop:after method="printLogAfterMethod" pointcut-ref="addLog"/>
         </aop:aspect>
