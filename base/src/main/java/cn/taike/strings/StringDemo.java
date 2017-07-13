@@ -1,4 +1,4 @@
-package cn.boxfish.file;
+package cn.taike.strings;
 
 import org.apache.commons.lang3.StringUtils;
 
