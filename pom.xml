@@ -6,14 +6,15 @@
     <groupId>cn.taike</groupId>
     <artifactId>basement-pom</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+
     <packaging>pom</packaging>
+    <name>project-basement-pom</name>
 
     <modules>
         <module>MavenDemo</module>
         <module>base</module>
     </modules>
 
-    <name>project-basement-pom</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
