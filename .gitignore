@@ -23,4 +23,6 @@ hs_err_pid*
 .idea/
 target/
 .gitignore
-src/main/java/cn/boxfish/aop/
+src/main/java/cn/taike/aop/
+src/main/java/cn/taike/mongo/MongoController.java
+src/test/
