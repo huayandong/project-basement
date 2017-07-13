@@ -5,10 +5,10 @@
 //import cn.boxfish.mongo.jpa.BookMongoRepository;
 //import com.google.common.collect.Maps;
 //import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.data.domain.Page;
-//import org.springframework.data.domain.PageRequest;
-//import org.springframework.data.domain.Pageable;
-//import org.springframework.data.domain.Sort;
+//import org.springframework.data.act.Page;
+//import org.springframework.data.act.PageRequest;
+//import org.springframework.data.act.Pageable;
+//import org.springframework.data.act.Sort;
 //import org.springframework.web.bind.annotation.RequestMapping;
 //import org.springframework.web.bind.annotation.RequestMethod;
 //import org.springframework.web.bind.annotation.RestController;
