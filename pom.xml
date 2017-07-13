@@ -20,6 +20,11 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <maven.compiler.optimize>true</maven.compiler.optimize>
+        <maven.tomcat.uriEncoding>${project.build.sourceEncoding}</maven.tomcat.uriEncoding>
         <java.version>1.8</java.version>
     </properties>
 
