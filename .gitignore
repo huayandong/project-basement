@@ -103,8 +103,9 @@ crashlytics.properties
 crashlytics-build.properties
 fabric.properties
 
-.gitignore
+#.gitignore
 .idea/inspectionProfiles/
 target/generated-sources/
 target/generated-test-sources/
 .idea/*
+MavenDemo/MavenDemo.iml
