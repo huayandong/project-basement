@@ -4,11 +4,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>cn.taike</groupId>
-    <artifactId>basement-pom</artifactId>
+    <artifactId>basement-root-pom</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
     <packaging>pom</packaging>
-    <name>project-basement-pom</name>
+    <name>project-root-pom</name>
 
     <modules>
         <module>MavenDemo</module>
@@ -26,6 +26,8 @@
         <maven.compiler.optimize>true</maven.compiler.optimize>
         <maven.tomcat.uriEncoding>${project.build.sourceEncoding}</maven.tomcat.uriEncoding>
         <java.version>1.8</java.version>
+        <spring-core-version>4.3.9.RELEASE</spring-core-version>
+        <spring-boot-version>1.3.8.RELEASE</spring-boot-version>
     </properties>
 
     <dependencies>
