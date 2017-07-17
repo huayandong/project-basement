@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="userDao" class="cn.taike.ioc.act.UserDao">
+        <property name="address">
+            <list>
+                <value>许都</value>
+                <value>洛阳</value>
+            </list>
+        </property>
+
+        <property name="integerSet">
+            <set>
+                <value>12</value>
+                <value>23</value>
+            </set>
+        </property>
+    </bean>
+
+    <bean id="user" class="cn.taike.ioc.act.UserService">
+        <property name="username" value="Simayi"/>
+        <property name="age" value="23"/>
+        <property name="userDao" ref="userDao"/>
+        <property name="array">
+            <list>
+                <value>曹植</value>
+                <value>曹丕</value>
+                <value>曹爽</value>
+            </list>
+        </property>
+        <property name="map">
+            <map>
+                <entry key="杨修" value="22"/>
+                <entry key="司马懿" value="25"/>
+                <entry key="孙权" value="30"/>
+            </map>
+        </property>
+    </bean>
+
+    <!--有参构造方式：-->
+    <!--<bean id="user" clacn.taike.ioc.ioc.act.User">-->
+    <!--<constructor-arg name="age" value="27"/>-->
+    <!--<constructor-arg name="username" value="Simayi"/>-->
+    <!--<constructor-arg name="userDao" ref="userDao"/>-->
+    <!--</bean>-->
+</beans>
