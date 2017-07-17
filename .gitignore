@@ -81,6 +81,11 @@ buildNumber.properties
 hs_err_pid*
 
 
-.idea
+.idea/*
 !MavenDemo/.gitignore
 !base/.gitignore
+MavenDemo/MavenDemo.iml
+base/base.iml
+
+MavenDemo/src/test/
+base/src/test/
