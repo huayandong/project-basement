@@ -1,9 +1,7 @@
 package cn.taike.zop;
 
-import org.aspectj.lang.annotation.After;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
-import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
 
 /**
@@ -20,13 +18,25 @@ public class PrintAspect {
 
     }
 
-    @Before(value = "pointCut()")
-    public void before() {
-        System.out.println("开启事务");
-    }
+//    @Before(value = "pointCut()")  //是在所拦截方法执行之前执行一段逻辑。
+//    public void before() {
+//        System.out.println("开启事务");
+//    }
+//
+//    @After(value = "pointCut()")  //是在所拦截方法执行之后执行一段逻辑。
+//    public void after() {
+//        System.out.println("关闭事务");
+//    }
 
-    @After(value = "pointCut()")
-    public void after() {
-        System.out.println("关闭事务");
+
+    @Around(value = "pointCut()")   //是可以同时在所拦截方法的前后执行一段逻辑。
+    public Object logAround(ProceedingJoinPoint joinPoint) throws Throwable {
+        long start = System.currentTimeMillis();
+        Object[] object = joinPoint.getArgs();
+        Object obj = joinPoint.proceed();
+        long span = System.currentTimeMillis() - start;
+
+        System.out.println(span + "000---000" + span);
+        return obj;
     }
 }
