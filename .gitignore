@@ -109,6 +109,7 @@ fabric.properties
 !base/.gitignore
 MavenDemo/MavenDemo.iml
 base/base.iml
+#basement-root-pom.iml
 
 MavenDemo/src/test/
 base/src/test/
