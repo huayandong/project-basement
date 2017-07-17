@@ -1,6 +1,5 @@
 package cn.taike.zop;
 
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 /**
@@ -10,11 +9,11 @@ import org.springframework.stereotype.Service;
 public class AopServiceImpl implements AopService {
     @Override
     public void save() {
-        System.out.println("接口实现类中在保存。。。");
+        System.out.println("面向切面------save方法");
     }
 
     @Override
     public void doAop() {
-        System.out.println("接口实现类中zop。。。");
+        System.out.println("面向切面------doAop方法");
     }
 }
