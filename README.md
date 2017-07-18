@@ -8,6 +8,10 @@ Personal project, just fun for author.
 ##1.StringUtils.isEmpty() 与 StringUtils.isBlank()区别
 1.1 isEmpty() : 判断字符串是否为空，当字符串为null、""时返回为true,当字符串为" "、"abc"时返回为false;<br/>
 1.2 isBlank() : 判断字符串是否为空白，当字符串为null、""、" "时，返回为true,当字符串为"abc"时，返回为false;<br/>
+1.3 isAnyBlank() : 判断参数可以是多个字符串，当多个字符串都满足isBlank()是返回true;<br/>
+1.4 isNoneBlank() : 判断参数可以是多个字符串，底层逻辑是对isAnyBlank()取反;<br/>
+1.5 isAnyEmpty() : 多个字符串参数，都满足isEmpty()是返回true;<br/>
+1.6 isNoneEmpty() : 多个字符串参数，底层是对isAnyEmpty()取反;<br/>
 
 ##2.集合是否为空的判断
 2.1 单列集合(Set/List)判断使用CollectionUtils.isEmpty(Set/List set/list);<br/>
