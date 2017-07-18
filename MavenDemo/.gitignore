@@ -37,3 +37,6 @@ buildNumber.properties
 hs_err_pid*
 *.iml
 #MavenDemo.iml
+
+### MVN ###
+.mvn

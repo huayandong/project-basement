@@ -104,17 +104,20 @@ crashlytics.properties
 crashlytics-build.properties
 fabric.properties
 
+.idea
 .idea/*
+.idea/misc.xml
 !MavenDemo/.gitignore
 !base/.gitignore
-MavenDemo/MavenDemo.iml
+*.iml
+MavenDemo/project-Maven.iml
 base/base.iml
-#basement-root-pom.iml
+basement-root-pom.iml
 
 MavenDemo/src/test/
 base/src/test/
 
-# MVN
+### MVN ###
 .mvn
 base/.mvn
 MavenDemo/.mvn
