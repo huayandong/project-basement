@@ -17,11 +17,15 @@ public class TestZop {
 //        System.out.println("----------------------");
 //        aopService.doAop();
 
+        Book book = (Book) context.getBean("book");
+        book.delete();
+        book.add();
+
         System.out.println("2222--------");
         ApplicationContext context2 =
                 new ClassPathXmlApplicationContext("aop.xml");
-        Book book = (Book) context2.getBean("book");
-        book.add();
-        book.delete();
+//        Book book = (Book) context2.getBean("book");
+//        book.add();
+//        book.delete();
     }
 }
