@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+       http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <bean id="book" class="cn.taike.zop.sample.Book"/>
+    <bean id="enhanceBook" class="cn.taike.zop.sample.EnhanceBook"/>
+    
+    <aop:config>
+        <aop:pointcut id="aopBook" expression="execution(* cn.taike.zop.sample.Book.del*(..))"/>
+        <aop:aspect id="log" ref="enhanceBook">
+            <aop:before method="printLog" pointcut-ref="aopBook"/>
+            <aop:after method="afterLog" pointcut-ref="aopBook"/>
+        </aop:aspect>
+    </aop:config>
+    
+</beans>
