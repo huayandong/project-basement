@@ -121,3 +121,6 @@ base/src/test/
 .mvn
 base/.mvn
 MavenDemo/.mvn
+mvnw
+mvnw.cmd
+microservices/eureka-server/src/test/
