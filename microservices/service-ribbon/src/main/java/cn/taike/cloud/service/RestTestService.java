@@ -14,6 +14,6 @@ public class RestTestService {
     private RestTemplate restTemplate;
 
     public String helloService(String name) {
-        return restTemplate.getForObject("http://service-client1/hi?name=" + name, String.class);
+        return restTemplate.getForObject("http://SERVICE-CLIENT1/say/hello?name=" + name, String.class);
     }
 }

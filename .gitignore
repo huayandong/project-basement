@@ -123,6 +123,7 @@ base/.mvn
 MavenDemo/.mvn
 mvnw
 mvnw.cmd
+src/test/
 microservices/eureka-server/src/test/
 microservices/eureka-client/src/test/
-src/test/
+microservices/service-ribbon/src/test/
