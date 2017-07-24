@@ -8,7 +8,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 /**
  * Created by huayandong on 17/7/21.
  */
-@FeignClient(value = "service-client1")  //注解value属性写的是 服务名 。
+//注解value属性写的是 服务名 ;  fallback:feign使用的熔断器时指定执行的类；
+@FeignClient(value = "service-client1", fallback = WTCInterfaceHystric.class)
 public interface WTCInterface {
 
     @RequestMapping(value = "/say/hello", method = RequestMethod.GET)
