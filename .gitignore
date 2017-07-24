@@ -130,3 +130,4 @@ microservices/eureka-client2/src/test/
 microservices/service-ribbon/src/test/
 microservices/service-feign/src/test/
 microservices/service-zuul/src/test/
+microservices/config-server/src/test/

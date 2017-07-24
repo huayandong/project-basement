@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/*****/project-basement.git
+          search-paths: microservices/yun-configs
+          username: *****
+          password: *****
+      profile: dev
+      label: develop
+server:
+  port: 8788
+
+
+# 在浏览器的地址栏访问时，url如下:
+# localhost:{server.port}/{spring.application.name}/{spring.cloud.config.profile}/{spring.cloud.config.label}
