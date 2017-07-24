@@ -7,5 +7,5 @@ eureka:
       defaultZone: http://localhost:8701/eureka/
 spring:
   application:
-    name: service-client2
+    name: service-client1
 # 需要指明 spring.application.name 很重要，以后的服务与服务之间互相调用一般是根据这个name;
