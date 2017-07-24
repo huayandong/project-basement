@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: config-client
+  cloud:
+    config:
+      label: develop
+      profile: dev
+      uri: http://localhost:8788/
+  profiles:
+    active: native
+server:
+  port: 8707
