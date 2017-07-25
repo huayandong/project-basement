@@ -71,8 +71,44 @@ public class CollectionStream {
         System.out.println("what it is: " + reduce);
     }
 
+    //flatMap:将一个流中的每一个值都换成另一个流，然后把所有的流连接起来成为一个流
+    public static void testFlatMap() {
+        List<String> list = Lists.newArrayList("hello", "world");
+
+        List<String> collect = list.stream()
+                .map(item -> item.split(""))  //遍历集合中的元素，将元素的字母拆分，返回的是Stream<String[]>
+                .flatMap(Arrays::stream)        //将流中的元素拆分为流，并合并成为一个流
+//                .flatMap(i -> Arrays.stream(i))
+                .distinct()                 //合并后的流去重
+                .collect(toList());
+
+        System.out.println(collect);
+        System.out.println(collect.size());
+
+
+        List<Integer> list1 = Lists.newArrayList(1, 2, 3);
+        List<Integer> list2 = Lists.newArrayList(3, 4);
+
+        //使用flatMap 扁平化处理
+        List<int[]> flatList = list1.stream()
+                .flatMap(i -> list2.
+                        stream().
+                        map(j -> new int[]{i, j}))
+                .collect(toList());
+        System.out.println("flatMap: " + flatList);
+
+        //未使用flatMap TODO ？？？↓
+        List<Stream<int[]>> mapList2 = list1.stream()
+                .map(i -> list2.
+                        stream()
+                        .map(j -> new int[]{i, j}))
+                .collect(toList());
+        System.out.println(mapList2);
+    }
+
     public static void main(String[] args) {
 //        testStream();
-        testMap();
+//        testMap();
+        testFlatMap();
     }
 }
