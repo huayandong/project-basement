@@ -106,9 +106,28 @@ public class CollectionStream {
         System.out.println(mapList2);
     }
 
+    public static void numberStream() {
+        List<Book> bookList = Lists.newArrayList();
+        Book book1 = new Book("bookName1", "project1", "1");
+        Book book2 = new Book("bookName2", "project2", "0");
+        Book book3 = new Book("Name3", "project3", "3");
+
+        bookList.add(book1);
+        bookList.add(book2);
+        bookList.add(book3);
+
+        int number = bookList.stream()
+                .mapToInt(i -> Integer.parseInt(i.getType()))
+                .sum();
+//                .reduce(Integer.MAX_VALUE, Integer::min);
+        System.out.println("min is: " + number);
+
+    }
+
     public static void main(String[] args) {
 //        testStream();
 //        testMap();
-        testFlatMap();
+//        testFlatMap();
+        numberStream();
     }
 }
