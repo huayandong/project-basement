@@ -5,6 +5,7 @@ import com.google.common.collect.Lists;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.toList;
 
@@ -30,6 +31,13 @@ public class CollectionStream {
                 .sorted(Comparator.comparing(Book::getType))
                 .map(Book::getBookName)
                 .collect(toList());
+
+        Stream<Book> bookStream = bookList.stream()
+                .filter(book -> book.getBookName().startsWith("book"))
+                .filter(book -> book.getProjectName().endsWith("2"))
+                .sorted(Comparator.comparing(Book::getType));
+
+        System.out.println(bookStream);
 
 //        book4.forEach(System.out::println);
         book4.forEach(item -> System.out.println("书名：" + item));
