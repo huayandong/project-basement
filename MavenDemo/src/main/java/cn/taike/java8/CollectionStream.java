@@ -1,11 +1,14 @@
 package cn.taike.java8;
 
 import cn.taike.entity.Book;
+import com.google.common.base.*;
+import com.google.common.base.Function;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 
-import java.util.Comparator;
-import java.util.List;
-import java.util.stream.Stream;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
 
 import static java.util.stream.Collectors.toList;
 
@@ -41,9 +44,28 @@ public class CollectionStream {
 
 //        book4.forEach(System.out::println);
         book4.forEach(item -> System.out.println("书名：" + item));
+
+        Stream stream = Stream.of();
+    }
+
+
+    public static void testMap() {
+        Map<Integer, String> bookMap = Maps.newHashMap();
+        bookMap.put(1, "bob");
+        bookMap.put(2, "tom");
+        bookMap.put(3, "alice");
+
+        //java8流的方式处理：将流中元素类型由Object转换成String
+        List<String> list = Lists.newArrayList(bookMap.values().toArray())
+                .stream()
+                .map(String::valueOf)
+                .collect(toList());
+
+        System.out.println("list:" + list.toString());
     }
 
     public static void main(String[] args) {
-        testStream();
+//        testStream();
+        testMap();
     }
 }
