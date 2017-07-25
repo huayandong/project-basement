@@ -11,6 +11,7 @@ import java.util.function.*;
 import java.util.stream.*;
 
 import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.toSet;
 
 /**
  * Created by huayandong on 17/7/24.
@@ -56,12 +57,18 @@ public class CollectionStream {
         bookMap.put(3, "alice");
 
         //java8流的方式处理：将流中元素类型由Object转换成String
+        //也可以使用toSet()结束流，返回的是Set<String>集合
         List<String> list = Lists.newArrayList(bookMap.values().toArray())
                 .stream()
                 .map(String::valueOf)
-                .collect(toList());
-
+                .collect(toList()); //.collect(toSet());
         System.out.println("list:" + list.toString());
+
+        //reduce方法：
+        Long reduce = Stream.iterate(1L, i -> i + 1).
+                limit(10).
+                reduce(0L, Long::sum);
+        System.out.println("what it is: " + reduce);
     }
 
     public static void main(String[] args) {
