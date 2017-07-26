@@ -1,5 +1,17 @@
 server:
   port: 8711
+  context-path: /strap
+
 spring:
   application:
     name: strap
+  data:
+    mongodb:
+      host:
+      database:
+      username:
+      password:
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/boxfish?useUnicode=true&characterEncoding=utf8
+    username: root
+    password: boxfish123
