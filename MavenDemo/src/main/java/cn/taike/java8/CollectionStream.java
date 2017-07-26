@@ -116,12 +116,37 @@ public class CollectionStream {
         bookList.add(book2);
         bookList.add(book3);
 
+        //reduce：求和、最大值/最小值、将多个值递归为一个值
         int number = bookList.stream()
                 .mapToInt(i -> Integer.parseInt(i.getType()))
                 .sum();
-//                .reduce(Integer.MAX_VALUE, Integer::min);
-        System.out.println("min is: " + number);
+        System.out.println("sum is: " + number);
+        //min
+        int reduceMin = bookList.stream().mapToInt(i -> Integer.parseInt(i.getType())).reduce(Integer.MAX_VALUE, Integer::min);
+        System.out.println("reduce min: " + reduceMin);
+        //max
+        int reduceMax = bookList.stream().mapToInt(i -> Integer.parseInt(i.getType())).reduce(Integer.MIN_VALUE, Integer::max);
+        System.out.println("reduce max: " + reduceMax);
+        //string的拼接
+        bookList.stream().map(Book::getBookName).reduce((a, b) -> a + "~" + b).ifPresent(i -> System.out.println("reduce name: " + i));
+//        System.out.println("reduce name: " + reduce);
 
+        //streamMax
+        OptionalInt streamMax = bookList.stream()
+                .mapToInt(i -> Integer.parseInt(i.getType()))
+                .max();
+        if (streamMax.isPresent()) {
+            streamMax.ifPresent(i -> System.out.println("max:" + i));
+        }
+
+        //streamMin
+        bookList.stream()
+                .mapToInt(i -> Integer.parseInt(i.getType()))
+                .min()
+                .ifPresent(i -> System.out.println("min:" + i));
+
+        //findAny：findany不是查找流中的全部元素,实则为第一个元素
+        bookList.stream().findAny().map(Book::getBookName).ifPresent(name -> System.out.println("name:" + name));
     }
 
     public static void main(String[] args) {
