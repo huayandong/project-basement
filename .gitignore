@@ -132,3 +132,4 @@ microservices/service-feign/src/test/
 microservices/service-zuul/src/test/
 microservices/config-server/src/test/
 microservices/config-client/src/test/
+boot-strap/src/test

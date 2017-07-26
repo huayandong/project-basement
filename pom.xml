@@ -14,6 +14,7 @@
         <module>MavenDemo</module>
         <module>base</module>
         <module>microservices</module>
+        <module>boot-strap</module>
     </modules>
 
     <description>Demo project for Spring Boot</description>

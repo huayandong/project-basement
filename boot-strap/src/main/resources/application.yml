@@ -1,0 +1,5 @@
+server:
+  port: 8711
+spring:
+  application:
+    name: strap
