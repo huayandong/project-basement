@@ -14,6 +14,8 @@
     <!--注解扫描包-->
     <context:component-scan base-package="cn.taike"/>
 
+    <!--<context:annotation-config/>  这种扫描注解的方式只能扫描属性上的注解，在开发中不常用 -->
+
     <!--开启aop注解方式，默认为false-->
     <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 

@@ -1,0 +1,16 @@
+server:
+  port: 8711
+
+spring:
+  profiles:
+    active: development
+  data:
+    mongodb:
+      host: mongo.db.boxfish.cn
+      database: beqp
+      username: bebase
+      password: boxfish
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/boxfish?useUnicode=true&characterEncoding=utf8
+    username: root
+    password: boxfish123
