@@ -6,10 +6,10 @@ spring:
     active: development
   data:
     mongodb:
-      host: mongo.db.boxfish.cn
-      database: beqp
-      username: bebase
-      password: boxfish
+      host: localhost
+      database: book
+      username: bookRoot
+      password: 123456
   datasource:
     url: jdbc:mysql://127.0.0.1:3306/boxfish?useUnicode=true&characterEncoding=utf8
     username: root
