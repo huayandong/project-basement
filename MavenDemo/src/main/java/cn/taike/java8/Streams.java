@@ -41,15 +41,35 @@ public class Streams {
 
         //文件生成流
         String src = "/Users/huayandong/Desktop";
-        try (Stream<String> stream = Files.lines(Paths.get(src, "604-605.txt"), Charset.defaultCharset())) {
+        try (Stream<String> stream = Files.lines(Paths.get(src, "604.txt"), Charset.defaultCharset())) {
             long count = stream.
                     flatMap(line -> Arrays.stream(line.split(""))).
                     distinct().
                     count();
-            System.out.println("??? "+count);
+            System.out.println("???: " + count);
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        //迭代 创建流
+        Stream.iterate(0, n -> n + 1)
+                .limit(5)
+                .forEach(i -> System.out.println("iterator: " + i));
+
+        //生成 创建流
+        Stream.generate(Math::random)
+                .limit(4)
+                .distinct()
+                .forEach(i -> System.out.println("generate: " + i));
+
+        Stream.generate(() -> "generate.....").limit(6).forEach(System.out::println);
+        Stream.iterate(0, n -> n - 2).limit(5).forEach(i -> System.out.println("iterator test: " + i));
+
+        //迭代流的应用：
+        Stream.iterate(new int[]{0, 1}, t -> new int[]{t[1], t[0] + t[1]})
+                .limit(8)
+                .forEach(item -> System.out.print("(" + item[0] + "," + item[1] + "), "));
+
     }
 
 
