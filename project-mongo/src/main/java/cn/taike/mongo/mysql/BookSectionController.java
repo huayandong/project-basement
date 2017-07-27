@@ -17,17 +17,14 @@ public class BookSectionController {
     @Autowired
     private BookSectionJpaRepository bookSectionJpaRepository;
 
-    @Autowired
-    BookSectionLabelService bookSectionLabelService;
-
     @RequestMapping(value = "/add/book/section")
     public void addBookSection() {
         try {
             BookSection bookSection = new BookSection();
             bookSection.setBookName("一起来刷牙");
             bookSection.setProjectName("/幼儿园课程/一起来刷牙");
-//            bookSection.setCover("/cover/一起来刷牙.jpg");
-//            bookSection.setType("STUDENT");
+            bookSection.setCover("/cover/一起来刷牙.jpg");
+            bookSection.setType("STUDENT");
             bookSectionJpaRepository.save(bookSection);
         } catch (Exception e) {
             e.printStackTrace();

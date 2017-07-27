@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
  * Created by huayandong on 17/7/27.
  */
 @RestController
-public class BookController {
+public class WebController {
 
     @Autowired
     CourseService courseService;
