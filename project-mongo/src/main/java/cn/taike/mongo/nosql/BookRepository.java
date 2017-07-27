@@ -1,4 +1,4 @@
-package cn.taike.mongo.mongo;
+package cn.taike.mongo.nosql;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
