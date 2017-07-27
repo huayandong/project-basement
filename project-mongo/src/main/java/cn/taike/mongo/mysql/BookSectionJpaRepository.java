@@ -18,8 +18,8 @@ public interface BookSectionJpaRepository extends JpaRepository<BookSection, Int
     @Query(value = "SELECT DISTINCT book.type FROM book", nativeQuery = true)
     List<String> findAllType();
 
-    @Transactional
-    @Modifying(clearAutomatically = true)
+    @Transactional  //提交事务
+    @Modifying(clearAutomatically = true)   //自动清除实体类中保存的数据
     @Query(value = "UPDATE book b SET b.video = ?1 WHERE b.type = ?2", nativeQuery = true)
     int insertVideoByType(String video, String type);
 
