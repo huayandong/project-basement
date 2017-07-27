@@ -14,7 +14,7 @@ public class BookController {
     CourseService courseService;
 
 
-    @RequestMapping(value = "/get")
+//    @RequestMapping(value = "/get")
     public Object get() {
         try {
             courseService.queryAllCourse();

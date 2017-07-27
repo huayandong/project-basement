@@ -3,8 +3,6 @@ package cn.taike.mongo.nosql;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
 import java.util.List;
 
 /**
@@ -16,11 +14,18 @@ public class Course {
 
     @Id
     private String id;
+    private String bookSectionId;
+    private List<String> courseLevel;
+    private List<String> courseType;
+    private List<String> courseTypeV2;
 
-    String bookSectionId;
-    List<String> courseLevel;
-    List<String> courseType;
-    List<String> courseTypeV2;
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getBookSectionId() {
         return bookSectionId;
