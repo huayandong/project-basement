@@ -22,7 +22,9 @@ public class MongoController {
 
         Map<String, String> msg = new HashMap<>();
         try {
-            courseLabelService.labelService();
+//            courseLabelService.labelService();
+
+            courseLabelService.check();
 
             msg.put("SUCCESS", "YES");
         } catch (Exception e) {
