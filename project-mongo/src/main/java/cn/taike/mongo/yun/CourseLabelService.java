@@ -25,6 +25,7 @@ public class CourseLabelService {
     private String savePath = "/Users/huayandong/Desktop/test";
     private ObjectMapper objectMapper = new ObjectMapper();
 
+    //剔除集合中重复的元素
     public void check() {
         List<CourseContentLabel> list = courseContentLabelJpaRepository.findAll();
 
@@ -36,7 +37,7 @@ public class CourseLabelService {
         List<String> sourceListDistinct = sourceList.stream().distinct().collect(toList());
 
         ListIterator<String> iterator = sourceListDistinct.listIterator();
-        while (iterator.hasNext()){
+        while (iterator.hasNext()) {
             String id = iterator.next();
             anotherList.remove(id);
         }
@@ -44,7 +45,7 @@ public class CourseLabelService {
         Set<String> collect = anotherList.stream().distinct().collect(toSet());
 
         try {
-            Path path = Paths.get(savePath, "重复的id.json");
+            Path path = Paths.get(savePath, "重复的id2333333.json");
             objectMapper.writeValue(path.toFile(), collect);
         } catch (IOException e) {
             e.printStackTrace();
