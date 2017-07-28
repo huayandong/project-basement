@@ -13,11 +13,19 @@ public class WebController {
     @Autowired
     CourseService courseService;
 
+    @Autowired
+    CheckCourseData CheckCourseData;
 
-//    @RequestMapping(value = "/get")
+
+    @RequestMapping(value = "/get/data")
     public Object get() {
         try {
-            courseService.queryAllCourse();
+//            courseService.queryAllCourse();
+
+//            CheckCourseData.synchronizeMongoToMysql();
+
+            CheckCourseData.doCheckData();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
