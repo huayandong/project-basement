@@ -33,3 +33,32 @@ Personal project, just fun for author.
 
 ## 6.重新管理项目
 6.1 重新构建项目，新建maven子项目;<br/>
+
+## 7.spring boot中使用定时任务
+7.1 修改入口程序中使用<code>@EnableScheduling</code>注解实现定时任务:
+<pre><code>import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
+
+@SpringBootApplication
+@EnableScheduling
+public class MongoApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(MongoApplication.class, args);
+    }
+}
+</code></pre>
+
+7.2 创建定时任务类，并使用<code>@Scheduled</code>实现定时任务;
+<pre><code>@Component  //将定时任务类加入到spring容器中
+public class MyTimer {
+
+    SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+
+    @Scheduled(fixedRate = 3000)  //每隔3秒中指定一次
+    public void timerRate() {
+        System.out.println(sdf.format(new Date()));
+    }
+}
+</code></pre>
