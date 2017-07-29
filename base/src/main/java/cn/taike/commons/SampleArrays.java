@@ -10,7 +10,7 @@ import java.util.Set;
 /**
  * Created by huayandong on 17/7/7.
  */
-public class Arrays {
+public class SampleArrays {
 
     public static void main(String[] args) {
 

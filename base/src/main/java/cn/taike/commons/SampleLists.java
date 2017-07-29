@@ -18,12 +18,12 @@ import java.util.Set;
 
 /**
  * 判断集合为空
- *  单列集合：CollectionUtils.isEmpty(Set/List set/list);
+ *  单列集合：SampleCollectionUtils.isEmpty(Set/List set/list);
  *      ListUtils 和 SetUtils 中没重写isEmpty()方法
  *  双列集合：MapUtils.isEmpty(Map map);
  *
  */
-public class Lists {
+public class SampleLists {
 
     public static void main(String[] args) {
 

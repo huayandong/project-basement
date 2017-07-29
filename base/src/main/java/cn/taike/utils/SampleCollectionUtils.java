@@ -14,9 +14,9 @@ import java.util.Map;
 /**
  * Created by huayandong on 17/5/22.
  */
-public class CollectionUtils {
+public class SampleCollectionUtils {
 
-    //guava Lists.transform：用于转换集合内部元素的类型，之后返回新collection
+    //guava SampleLists.transform：用于转换集合内部元素的类型，之后返回新collection
     public void transFormUtils() {
         List<String> pathList = Lists.newArrayList();
         List<Path> list = Lists.transform(pathList, input -> Paths.get(input));
