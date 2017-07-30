@@ -13,6 +13,16 @@ public class Dish {
 
     private Integer calories;
 
+    private boolean isVagetable;
+
+    public boolean isVagetable() {
+        return isVagetable;
+    }
+
+    public void setVagetable(boolean vagetable) {
+        isVagetable = vagetable;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -48,11 +58,12 @@ public class Dish {
     public Dish() {
     }
 
-    public Dish(Integer id, String name, String type, Integer calories) {
+    public Dish(Integer id, String name, String type, Integer calories, boolean isVagetable) {
         this.id = id;
         this.name = name;
         this.type = type;
         this.calories = calories;
+        this.isVagetable = isVagetable;
     }
 
     @Override
@@ -61,7 +72,8 @@ public class Dish {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", type='" + type + '\'' +
-                ", calories='" + calories + '\'' +
+                ", calories=" + calories +
+                ", isVagetable=" + isVagetable +
                 '}';
     }
 }

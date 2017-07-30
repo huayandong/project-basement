@@ -14,9 +14,9 @@ import static java.util.stream.Collectors.*;
 public class SampleStreamCollect {
 
     private static List<Dish> list = Lists.newArrayList(
-            new Dish(12, "food1", "Vagetable", 500),
-            new Dish(124, "food12", "beef", 800),
-            new Dish(125, "food13", "soup", 300)
+            new Dish(12, "food1", "Vagetable", 500, true),
+            new Dish(124, "food12", "beef", 800, false),
+            new Dish(125, "food13", "soup", 300, true)
     );
 
     public static void sampleStream() {
@@ -97,6 +97,35 @@ public class SampleStreamCollect {
         //求分组中的最大值
         Map<String, Optional<Dish>> groupMax = list.stream().collect(groupingBy(Dish::getType, maxBy(Comparator.comparingInt(Dish::getCalories))));
         System.out.println("分组最大值: " + groupMax);
+
+        //分组求和
+        Map<String, Integer> summingGroup = list.stream().collect(groupingBy(Dish::getType, summingInt(Dish::getCalories)));
+        System.out.println("分组求和: " + summingGroup);
+
+        //分组映射
+        Map<String, Set<String>> groupMapping = list.stream().collect(groupingBy(Dish::getType,
+                mapping((Dish dish) -> {
+                    if (dish.getCalories() < 350) {
+                        return "低热量";
+                    } else if (dish.getCalories() < 700) {
+                        return "还可以吧";
+                    } else {
+                        return "高热量";
+                    }
+                }, toSet()))
+        );
+        System.out.println("分组映射: " + groupMapping);
+
+        //流分块
+        Map<Boolean, List<Dish>> partition = list.stream().collect(partitioningBy(Dish::isVagetable));
+        System.out.println("分区：" + partition);
+        //流分区 二级map
+        Map<Boolean, Map<String, List<Dish>>> collect = list.stream().collect(partitioningBy(Dish::isVagetable, groupingBy(Dish::getType)));
+        System.out.println(collect);
+
+        //分组 帅选
+        Map<Boolean, Dish> collectMap = list.stream().collect(partitioningBy(Dish::isVagetable, collectingAndThen(maxBy(Comparator.comparingInt(Dish::getCalories)), Optional::get)));
+        System.out.println("???:" + collectMap);
 
     }
 
