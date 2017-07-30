@@ -13,15 +13,13 @@ import static java.util.stream.Collectors.*;
  */
 public class SampleStreamCollect {
 
-    public static void sampleStream() {
+    private static List<Dish> list = Lists.newArrayList(
+            new Dish(12, "food1", "Vagetable", 500),
+            new Dish(124, "food12", "beef", 800),
+            new Dish(125, "food13", "soup", 300)
+    );
 
-        List<Dish> list = new ArrayList<>();
-        Dish dish = new Dish(12, "food1", "Vagetable", 500);
-        Dish dish2 = new Dish(124, "food12", "beef", 800);
-        Dish dish3 = new Dish(125, "food13", "soup", 300);
-        list.add(dish);
-        list.add(dish2);
-        list.add(dish3);
+    public static void sampleStream() {
 
         //统计流中元素个数：
 //        list.stream().collect(Collectors.counting());  同下
@@ -65,9 +63,47 @@ public class SampleStreamCollect {
 
     }
 
+    public static void streamTotal() {
+        int total = list.stream().collect(reducing(0, Dish::getCalories, (i, j) -> i + j));
+        System.out.println("total: " + total);
+
+        Optional<Dish> reduce = list.stream().reduce((d1, d2) -> d1.getCalories() > d2.getCalories() ? d1 : d2);
+        reduce.ifPresent(dish -> System.out.println(dish));
+
+        //分组
+        Map<Integer, List<Dish>> groupMap = list.stream().collect(groupingBy(Dish::getCalories));
+        System.out.println(groupMap);
+
+        //二级分组
+        Map<String, Map<String, List<Dish>>> groupMap2 = list.stream()
+                .collect(Collectors.groupingBy(Dish::getType,
+                        groupingBy((Dish dish) -> {
+                                    if (dish.getCalories() <= 400) {
+                                        return "低热量";
+                                    } else if (dish.getCalories() <= 750) {
+                                        return "还好";
+                                    } else {
+                                        return "高热量";
+                                    }
+                                }
+                        ))
+                );
+        System.out.println("二级分组: " + groupMap2);
+
+        //按照子组统计数据: 统计不同类型的数量
+        Map<String, Long> groupCount = list.stream().collect(Collectors.groupingBy(Dish::getType, counting()));
+        System.out.println("统计分组中的数量： " + groupCount);
+
+        //求分组中的最大值
+        Map<String, Optional<Dish>> groupMax = list.stream().collect(groupingBy(Dish::getType, maxBy(Comparator.comparingInt(Dish::getCalories))));
+        System.out.println("分组最大值: " + groupMax);
+
+    }
+
 
     public static void main(String[] args) {
 
-        sampleStream();
+//        sampleStream();
+        streamTotal();
     }
 }
