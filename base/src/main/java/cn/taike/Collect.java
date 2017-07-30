@@ -6,8 +6,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by huayandong on 17/7/29.
@@ -22,7 +21,7 @@ public class Collect {
      * ArrayList<Long> obj = null;
      * obj.isEmpty();   //此时会报异常
      */
-    public static void SampleIsEmpty() {
+    public static void sampleIsEmpty() {
         List<Double> obj = Lists.newArrayList();
 
 //        ArrayList<Long> obj = null;
@@ -56,16 +55,10 @@ public class Collect {
         System.out.println("StringUtils: " + equals);
     }
 
-    public static void SampleStream() {
-
-
-    }
-
 
     public static void main(String[] args) {
 
-        SampleIsEmpty();
-
+        sampleIsEmpty();
 
     }
 }
