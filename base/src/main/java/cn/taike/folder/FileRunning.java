@@ -20,7 +20,7 @@ public class FileRunning {
     static List<File> fileList = Lists.newArrayList();
 
     public static List<File> goFolder(File file) {
-        //List<File> fileList = Lists.newArrayList();
+        //List<File> fileList = SampleLists.newArrayList();
         File[] files = file.listFiles();
         for (File f : files) {
             if (!f.isDirectory()) {

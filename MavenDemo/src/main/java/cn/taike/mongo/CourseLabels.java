@@ -7,8 +7,6 @@ import com.mongodb.ServerAddress;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
-import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.bson.Document;
 import org.slf4j.Logger;
@@ -21,6 +19,7 @@ import static java.util.stream.Collectors.toSet;
 /**
  * Created by huayandong on 17/7/26.
  */
+@Deprecated
 public class CourseLabels {
 
     private static final Logger logger = LoggerFactory.getLogger(CourseLabels.class);
