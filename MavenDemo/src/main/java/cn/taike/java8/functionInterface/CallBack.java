@@ -1,4 +1,4 @@
-package cn.taike.java8.Interface;
+package cn.taike.java8.functionInterface;
 
 /**
  * Created by huayandong on 17/7/25.

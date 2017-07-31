@@ -19,6 +19,7 @@ import static java.util.stream.Collectors.toSet;
 /**
  * Created by huayandong on 17/7/26.
  */
+@Deprecated
 public class CourseLabels {
 
     private static final Logger logger = LoggerFactory.getLogger(CourseLabels.class);
