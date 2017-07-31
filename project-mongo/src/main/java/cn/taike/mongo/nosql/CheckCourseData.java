@@ -66,7 +66,12 @@ public class CheckCourseData {
                 String level = bookSectionLabel.getLevel();
                 String type = bookSectionLabel.getType();
 
-                if (StringUtils.equals(courseLevel, level) && StringUtils.equals(typeV2, type)) {
+                boolean andFlag = BooleanUtils.and(new boolean[]{
+                        StringUtils.equals(courseLevel, level),
+                        StringUtils.equals(typeV2, type)
+                });
+
+                if (andFlag) {
                     //mongo中的level type都和mysql中的相等，不用同步
                     return;
                 } else {
