@@ -26,6 +26,10 @@ public class Sample {
         System.out.println("functionInterface: " + list);
     }
 
+    public static void doCallback(CallBack<String, String> callBack) {
+        System.out.println(callBack.call("abc"));
+    }
+
     public static void doPredicate(List<Integer> list, Predicate<Integer> predicate) {
         list.forEach(item -> {
             if (predicate.test(item)) {
@@ -66,6 +70,10 @@ public class Sample {
 
 
         localDataTimeSample();
+
+        CallBack<String, String> a = String::toUpperCase;
+        doCallback(a);
+//        System.out.println("???:" + a);
     }
 
 }
