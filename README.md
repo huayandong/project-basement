@@ -6,6 +6,7 @@ Personal project, just fun for author.
 2. 2017/07/14:发布2.0版本
 3. 2017/07/17:发布3.0/3.1版本
 4. 2017/07/19:发布3.2版本
+5. 2017/07/31:发布4.1版本
 
 ## 1.StringUtils.isEmpty() 与 StringUtils.isBlank()区别
 1.1 isEmpty() : 判断字符串是否为空，当字符串为null、""时返回为true,当字符串为" "、"abc"时返回为false;<br/>
@@ -62,3 +63,7 @@ public class MyTimer {
     }
 }
 </code></pre>
+
+## 8.Java8
+8.1 Java8中stream的使用;<br/>
+8.2 Java8中函数式接口的使用;<br/>
