@@ -20,6 +20,7 @@ public class JdbcTemplateSample {
     private static final String PASSWORD = "boxfish123";
     private static final String DRIVER_CLASS_NAME = "com.mysql.jdbc.Driver";
 
+    //统计记录数
     public void queryCount() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName(DRIVER_CLASS_NAME);
@@ -37,6 +38,7 @@ public class JdbcTemplateSample {
         System.out.println("统计：" + count);
     }
 
+    //查询对象集合
     public void queryBookList() {
 
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
@@ -54,7 +56,23 @@ public class JdbcTemplateSample {
 
     }
 
+    //查询对象
+    public void queryEntity() {
+        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+        dataSource.setDriverClassName(DRIVER_CLASS_NAME);
+        dataSource.setUrl(URL);
+        dataSource.setUsername(USER_NAME);
+        dataSource.setPassword(PASSWORD);
 
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+        String sql = "SELECT b.* FROM book b WHERE id = ?";
+
+        Book book = (Book) jdbcTemplate.queryForObject(sql, new Object[]{9}, new myRowMapper());
+        System.out.println(book);
+
+    }
+
+    //自定义封装对象
     class myRowMapper implements RowMapper {
 
         @Override
@@ -73,7 +91,8 @@ public class JdbcTemplateSample {
 
         JdbcTemplateSample jdbcTemplateSample = new JdbcTemplateSample();
 //        jdbcTemplateSample.queryCount();
-        jdbcTemplateSample.queryBookList();
+//        jdbcTemplateSample.queryBookList();
+        jdbcTemplateSample.queryEntity();
     }
 
 }
