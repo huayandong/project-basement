@@ -17,9 +17,9 @@ import java.util.stream.Stream;
 public class Streams {
 
     private static List<Book> bookList = Lists.newArrayList(
-            new Book("bookName1", "project1", "1"),
-            new Book("bookName2", "project2", "0"),
-            new Book("Name3", "project3", "3")
+            new Book("bookName1", "project1", "1", "123", "mp4"),
+            new Book("bookName2", "project2", "0", "123", "mp4"),
+            new Book("Name3", "project3", "3", "123", "mp4")
     );
 
     //数值流与对象流

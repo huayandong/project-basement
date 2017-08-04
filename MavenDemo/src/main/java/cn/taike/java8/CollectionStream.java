@@ -21,9 +21,9 @@ public class CollectionStream {
     public static void testStream() {
 
         List<Book> bookList = Lists.newArrayList();
-        Book book1 = new Book("bookName1", "project1", "1");
-        Book book2 = new Book("bookName2", "project2", "0");
-        Book book3 = new Book("Name3", "project3", "3");
+        Book book1 = new Book("bookName1", "project1", "1","123","mp4");
+        Book book2 = new Book("bookName2", "project2", "0","123","mp4");
+        Book book3 = new Book("Name3", "project3", "3","123","mp4");
 
         bookList.add(book1);
         bookList.add(book2);
@@ -108,9 +108,9 @@ public class CollectionStream {
 
     public static void numberStream() {
         List<Book> bookList = Lists.newArrayList();
-        Book book1 = new Book("bookName1", "project1", "1");
-        Book book2 = new Book("bookName2", "project2", "0");
-        Book book3 = new Book("Name3", "project3", "3");
+        Book book1 = new Book("bookName1", "project1", "1","123","mp4");
+        Book book2 = new Book("bookName2", "project2", "0","123","mp4");
+        Book book3 = new Book("Name3", "project3", "3","123","mp4");
 
         bookList.add(book1);
         bookList.add(book2);

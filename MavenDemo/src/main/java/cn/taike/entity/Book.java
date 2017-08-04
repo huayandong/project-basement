@@ -13,7 +13,7 @@ import javax.persistence.*;
 public class Book {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+//    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @Column(name = "book_name")
@@ -24,6 +24,10 @@ public class Book {
 
     @Column
     private String type;
+
+    private String cover;
+
+    private String video;
 
     public Integer getId() {
         return id;
@@ -57,9 +61,51 @@ public class Book {
         this.type = type;
     }
 
-    public Book(String bookName, String projectName, String type) {
+    public String getCover() {
+        return cover;
+    }
+
+    public void setCover(String cover) {
+        this.cover = cover;
+    }
+
+    public String getVideo() {
+        return video;
+    }
+
+    public void setVideo(String video) {
+        this.video = video;
+    }
+
+    public Book() {
+    }
+
+    public Book(Integer id, String bookName, String projectName, String type, String cover, String video) {
+        this.id = id;
         this.bookName = bookName;
         this.projectName = projectName;
         this.type = type;
+        this.cover = cover;
+        this.video = video;
+    }
+
+    public Book(String bookName, String projectName, String type, String cover, String video) {
+        this.bookName = bookName;
+        this.projectName = projectName;
+        this.type = type;
+        this.cover = cover;
+        this.video = video;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", bookName='" + bookName + '\'' +
+                ", projectName='" + projectName + '\'' +
+                ", type='" + type + '\'' +
+                ", cover='" + cover + '\'' +
+                ", video='" + video + '\'' +
+                '}';
     }
 }
