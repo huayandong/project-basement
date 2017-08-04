@@ -1,6 +1,5 @@
 package cn.taike.dao;
 
-
 import cn.taike.entity.Book;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -20,19 +19,22 @@ public class JdbcTemplateSample {
     private static final String PASSWORD = "boxfish123";
     private static final String DRIVER_CLASS_NAME = "com.mysql.jdbc.Driver";
 
-    //统计记录数
-    public void queryCount() {
-        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+    private static DriverManagerDataSource dataSource = new DriverManagerDataSource();
+
+    static {
         dataSource.setDriverClassName(DRIVER_CLASS_NAME);
         dataSource.setUrl(URL);
         dataSource.setUsername(USER_NAME);
         dataSource.setPassword(PASSWORD);
+    }
+
+    //统计记录数
+    public void queryCount() {
 
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-
         String sql = "SELECT COUNT(1) FROM book";
 
-//        int count = (int) jdbcTemplate.queryForObject(sql, Integer.class); //统计：14
+        //int count = (int) jdbcTemplate.queryForObject(sql, Integer.class); //统计：14
         int count = jdbcTemplate.queryForInt(sql); //统计：14
 
         System.out.println("统计：" + count);
@@ -40,12 +42,6 @@ public class JdbcTemplateSample {
 
     //查询对象集合
     public void queryBookList() {
-
-        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName(DRIVER_CLASS_NAME);
-        dataSource.setUrl(URL);
-        dataSource.setUsername(USER_NAME);
-        dataSource.setPassword(PASSWORD);
 
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
         String sql = "SELECT b.* FROM book b ";
@@ -58,11 +54,6 @@ public class JdbcTemplateSample {
 
     //查询对象
     public void queryEntity() {
-        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName(DRIVER_CLASS_NAME);
-        dataSource.setUrl(URL);
-        dataSource.setUsername(USER_NAME);
-        dataSource.setPassword(PASSWORD);
 
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
         String sql = "SELECT b.* FROM book b WHERE id = ?";
@@ -87,11 +78,18 @@ public class JdbcTemplateSample {
         }
     }
 
+    public void insertBook() {
+
+    }
+
     public static void main(String[] args) {
 
         JdbcTemplateSample jdbcTemplateSample = new JdbcTemplateSample();
-//        jdbcTemplateSample.queryCount();
-//        jdbcTemplateSample.queryBookList();
+
+        jdbcTemplateSample.queryCount();
+        System.out.println("-------");
+        jdbcTemplateSample.queryBookList();
+        System.out.println("-------");
         jdbcTemplateSample.queryEntity();
     }
 
