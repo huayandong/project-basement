@@ -20,7 +20,7 @@ public class JdbcSample {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection(URL, USER_NAME, PASSWORD);
-//            String sql = "SELECT COUNT(*) AS sizes FROM book"; //统计表中总记录数
+
             String sql = "INSERT INTO book(id,book_name,project_name,type,cover,video) VALUES(?,?,?,?,?,?)";
 
             pst = conn.prepareStatement(sql);
@@ -30,20 +30,35 @@ public class JdbcSample {
             pst.setString(4, "STUDENT");
             pst.setString(5, "/cover/吃饼干.jpg");
             pst.setString(6, "student.mp4");
+
             int i = pst.executeUpdate();
             System.out.println("插入成功？: " + i);
-//            while (rs.next()) {
-//                int sizes = rs.getInt("sizes");
-//                System.out.println(sizes);
-//            }
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
+
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
-
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (pst != null) {
+                try {
+                    pst.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
         }
-
 
     }
 
