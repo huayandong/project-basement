@@ -37,34 +37,42 @@ public class JdbcSample {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            if (rs != null) {
-                try {
-                    rs.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (pst != null) {
-                try {
-                    pst.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (conn != null) {
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
+            CloseUtils.close(rs, pst, conn);
+        }
+
+    }
+
+    public void jdbcDelete() {
+
+        Connection conn = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getConnection(URL, USER_NAME, PASSWORD);
+
+            String sql = "DELETE FROM book WHERE book_name = ? AND type = ?";
+
+            pst = conn.prepareStatement(sql);
+            pst.setString(1, "fat mat cat");
+            pst.setString(2, "TEACHER");
+            int i = pst.executeUpdate();
+            System.out.println("删除成功？: " + i);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            CloseUtils.close(rs, pst, conn);
         }
 
     }
 
 
     public static void main(String[] args) {
-        new JdbcSample().testJdbc();
+
+        JdbcSample jdbcSample = new JdbcSample();
+        jdbcSample.jdbcDelete();
 
     }
 
