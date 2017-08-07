@@ -19,6 +19,7 @@ import java.util.List;
  * Created by huayandong on 17/5/31.
  */
 @Slf4j
+@Deprecated
 public class MongoJava {
 
     private static final String HOST = "localhost";

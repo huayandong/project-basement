@@ -13,6 +13,7 @@ import java.util.List;
 /**
  * Created by huayandong on 17/6/23.
  */
+@Deprecated
 public class MongoSampleWithAuth {
 
     private static final String HOST = "localhost";
