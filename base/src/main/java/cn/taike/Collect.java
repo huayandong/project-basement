@@ -55,10 +55,31 @@ public class Collect {
         System.out.println("StringUtils: " + equals);
     }
 
+    List<String> data = Lists.newArrayList();
+
+    public List<String> getData() {
+        return data;
+    }
+
+    public void setData(List<String> data) {
+        this.data = data;
+    }
+
+    public static void isEmpty() {
+        Collect collect = new Collect();
+        List<String> data = collect.getData();
+        System.out.println("WTF: " + data);
+
+        boolean notEmpty = CollectionUtils.isNotEmpty(collect.getData());
+        System.out.println("为空？: " + notEmpty);
+
+    }
+
 
     public static void main(String[] args) {
 
         sampleIsEmpty();
 
+        isEmpty();
     }
 }
