@@ -1,4 +1,4 @@
-package cn.taike.command.Sample;
+package cn.taike.design.mode.command.Sample;
 
 import java.util.ArrayList;
 import java.util.List;

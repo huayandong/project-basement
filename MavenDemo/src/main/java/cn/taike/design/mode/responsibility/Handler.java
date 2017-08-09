@@ -1,4 +1,4 @@
-package cn.taike.responsibility;
+package cn.taike.design.mode.responsibility;
 
 /**
  * Created by huayandong on 17/8/7.

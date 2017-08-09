@@ -1,4 +1,4 @@
-package cn.taike.dao;
+package cn.taike.jdbc.template;
 
 import cn.taike.entity.Book;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -35,7 +35,7 @@ public class JdbcTemplateSample {
         String sql = "SELECT COUNT(1) FROM book";
 
         //int count = (int) jdbcTemplate.queryForObject(sql, Integer.class); //统计：14
-        int count = jdbcTemplate.queryForInt(sql); //统计：14
+        int count = jdbcTemplate.queryForObject(sql, Integer.class); //统计：14
 
         System.out.println("统计：" + count);
     }

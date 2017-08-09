@@ -1,18 +1,18 @@
-package cn.taike.command;
+package cn.taike.design.mode.command;
 
 /**
  * Created by huayandong on 17/8/2.
  */
-public class CommandOn implements Command {
+public class CommandOff implements Command {
 
     private Light light;
 
-    public CommandOn(Light l) {
+    public CommandOff(Light l) {
         this.light = l;
     }
 
     @Override
     public void execute() {
-        light.turnOn();
+        light.turnOff();
     }
 }

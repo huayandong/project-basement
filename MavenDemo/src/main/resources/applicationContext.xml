@@ -13,40 +13,11 @@
 
     <!--注解扫描包-->
     <context:component-scan base-package="cn.taike"/>
-
     <!--<context:annotation-config/>  这种扫描注解的方式只能扫描属性上的注解，在开发中不常用 -->
+
 
     <!--开启aop注解方式，默认为false-->
     <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 
-    <!--定时任务: 配置作业类-->
-    <!--<bean id="job" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">-->
-        <!--<property name="targetObject">-->
-            <!--<bean class="cn.taike.schedule.Job"/>-->
-        <!--</property>-->
-        <!--<property name="targetMethod" value="doJob"/>-->
-        <!--<property name="concurrent" value="false"/>-->
-    <!--</bean>-->
-    <!--定时任务: 配置触发器-定时任务，每天12点运行一次-->
-    <!--<bean id="cronTiger" class="org.springframework.scheduling.quartz.CronTriggerBean">-->
-        <!--<property name="jobDetail" ref="job"/>-->
-        <!--<property name="misfireInstructionName" value="0 0 12 * * ?"/>-->
-    <!--</bean>-->
-
-    <!--每隔2秒执行一次-->
-    <!--<bean id="simpleTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerBean">-->
-    <!--<property name="jobDetail" ref="job" />-->
-    <!--<property name="startDelay" value="0" />&lt;!&ndash; 调度工厂实例化后，经过0秒开始执行调度 &ndash;&gt;-->
-    <!--<property name="repeatInterval" value="2000" />&lt;!&ndash; 每2秒调度一次 &ndash;&gt;-->
-    <!--</bean>-->
-
-    <!--配置调度工厂-->
-    <!--<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">-->
-        <!--<property name="triggers">-->
-            <!--<list>-->
-                <!--<ref bean="cronTiger"/>-->
-            <!--</list>-->
-        <!--</property>-->
-    <!--</bean>-->
 
 </beans>

@@ -1,4 +1,4 @@
-package cn.taike.dao;
+package cn.taike.jdbc.template;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

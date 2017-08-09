@@ -1,4 +1,4 @@
-package cn.taike.command;
+package cn.taike.design.mode.command;
 
 /**
  * Created by huayandong on 17/8/2.
