@@ -11,7 +11,7 @@
     <name>project-root-pom</name>
 
     <modules>
-        <module>MavenDemo</module>
+        <!--<module>MavenDemo</module>-->
         <module>base</module>
         <module>microservices</module>
     </modules>
