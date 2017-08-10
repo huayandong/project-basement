@@ -8,4 +8,8 @@
     <select id="selectBookCount" parameterType="int" resultType="int">
         SELECT COUNT(1) FROM book;
     </select>
+
+    <select id="queryBookById" parameterType="_int" resultType="cn.taike.entity.Book">
+        SELECT id, book_name AS bookName, project_name AS projectName,type,cover,video FROM book WHERE id = #{value}
+    </select>
 </mapper>
