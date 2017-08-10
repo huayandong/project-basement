@@ -26,19 +26,32 @@ public class SampleTest {
         }
     }
 
+    //统计表中记录数
+    public void selectCount() {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        Integer count = sqlSession.selectOne("selectBookCount");
+        System.out.println("数量: " + count);
+
+        sqlSession.close();
+    }
+
+    //根据id查询对象
+    public void queryBookById() {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        Book book = sqlSession.selectOne("queryBookById", 3);
+        System.out.println("BOOK: " + book);
+
+        sqlSession.close();
+    }
+
+
     public static void main(String[] args) {
-        try {
-            SqlSession sqlSession = sqlSessionFactory.openSession();
-            Integer count = sqlSession.selectOne("selectBookCount");
-            System.out.println("数量: " + count);
 
-            Book book = sqlSession.selectOne("queryBookById", 3);
-            System.out.println("BOOK: " + book);
+        SampleTest sample = new SampleTest();
 
-            sqlSession.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        sample.selectCount();
+        sample.queryBookById();
+
     }
 
 
