@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--namespace: 1、隔离sql语句；2、绑定pojo接口，不需要写mapper接口的实现类-->
+<mapper namespace="book">
+    <select id="selectBookCount" parameterType="int" resultType="int">
+        SELECT COUNT(1) FROM book;
+    </select>
+</mapper>
