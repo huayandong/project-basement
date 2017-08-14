@@ -2,10 +2,13 @@ package cn.taike;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import javax.jws.soap.SOAPBinding;
 import java.util.*;
 
 /**
@@ -76,10 +79,41 @@ public class Collect {
     }
 
 
+    public static List<User> testList(List<User> list) {
+        for (User user : list) {
+            Long id = user.getId();
+            String name = user.getName();
+
+            user.setStrId(String.valueOf(id));
+            user.setAddress("boxfish : " + name);
+        }
+        return list;
+    }
+
+    @Data
+    public static class User {
+        private Long id;
+        private String name;
+
+        private String strId;
+        private String address;
+
+    }
+
+
     public static void main(String[] args) {
 
-        sampleIsEmpty();
+//        sampleIsEmpty();
 
-        isEmpty();
+//        isEmpty();
+
+        User user = new User();
+        user.setId(12L);
+        user.setName("HAHA");
+        User user2 = new User();
+        user2.setId(12L);
+        user2.setName("HAHA");
+        List<User> users = testList(Lists.newArrayList(user, user2));
+        System.out.println(users);
     }
 }
