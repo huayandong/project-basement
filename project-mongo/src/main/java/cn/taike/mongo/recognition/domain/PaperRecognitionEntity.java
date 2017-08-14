@@ -14,7 +14,7 @@ import javax.persistence.*;
 @Table(
         name = "paper_table_test",
         indexes = {
-                @Index(name = "", columnList = "", unique = true)
+                @Index(name = "index_userId_paperId_pageId", columnList = "userId,paperId,pageId", unique = true)
         }
 )
 public class PaperRecognitionEntity {
