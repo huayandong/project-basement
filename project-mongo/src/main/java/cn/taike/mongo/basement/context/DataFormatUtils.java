@@ -32,26 +32,22 @@ public class DataFormatUtils {
         }
     }
 
+    public static String toJson(Object object) throws JsonProcessingException {
+        return mapper.writeValueAsString(object);
+    }
+
     public static <T> T toEntity(String json, Class<T> type) throws IOException {
         return mapper.readValue(json, type);
     }
 
-    public static <T> List<T> toListEntity(String json, Class<T> type) {
-        try {
-            JavaType javaType = mapper.getTypeFactory().constructParametricType(List.class, type);
-            return (List<T>) mapper.readValue(json, javaType);
-        } catch (IOException e) {
-            return null;
-        }
+    public static <T> List<T> toListEntity(String json, Class<T> type) throws IOException {
+        JavaType javaType = mapper.getTypeFactory().constructParametricType(List.class, type);
+        return (List<T>) mapper.readValue(json, javaType);
     }
 
-    public static Map<String, String> toStringMapEntity(String json) {
-        try {
-            return mapper.readValue(json.getBytes(), new TypeReference<Map<String, String>>() {
-            });
-        } catch (Exception e) {
-            return null;
-        }
+    public static Map<String, String> toStringMapEntity(String json) throws IOException {
+        return mapper.readValue(json.getBytes(), new TypeReference<Map<String, String>>() {
+        });
     }
 
 }
