@@ -42,12 +42,17 @@ public class DataFormatUtils {
 
     public static <T> List<T> toListEntity(String json, Class<T> type) throws IOException {
         JavaType javaType = mapper.getTypeFactory().constructParametricType(List.class, type);
-        return (List<T>) mapper.readValue(json, javaType);
+        return mapper.readValue(json, javaType);
     }
 
     public static Map<String, String> toStringMapEntity(String json) throws IOException {
         return mapper.readValue(json.getBytes(), new TypeReference<Map<String, String>>() {
         });
+    }
+
+    public static <K, Y> Map<K, Y> toMapEntity(String json, Class<K> keyType, Class<Y> valueType) throws IOException {
+        JavaType javaType = mapper.getTypeFactory().constructParametricType(Map.class, keyType, valueType);
+        return mapper.readValue(json, javaType);
     }
 
 }
