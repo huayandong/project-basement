@@ -14,7 +14,7 @@ public class ExceptionHandlerController {
 
     @ExceptionHandler(Exception.class)
     public Object allException(Exception e) {
-        log.error("all Exception.", e);
+        log.error("THIS IS ABOVE CONTROLLER EXCEPTION.", e);
         return ResponseEntity.badRequest().build();
     }
 }
