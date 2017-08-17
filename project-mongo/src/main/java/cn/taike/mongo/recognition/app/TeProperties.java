@@ -15,5 +15,13 @@ import javax.validation.constraints.NotNull;
 public class TeProperties {
 
     @NotNull
-    private String recognition;
+    private String recognitionUrl;
+    @NotNull
+    private String callbackUrl;
+    @NotNull
+    private String evaluationUrl;
+    @NotNull
+    private String evaluationUserName;
+    @NotNull
+    private String evaluationPassword;
 }
