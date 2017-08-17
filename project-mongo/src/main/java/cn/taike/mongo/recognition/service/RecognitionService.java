@@ -5,11 +5,14 @@ import cn.taike.mongo.recognition.domain.PaperRecognitionEntity;
 import cn.taike.mongo.recognition.domain.PaperRecognitionRepository;
 import cn.taike.mongo.recognition.handler.CompositionEvaluationHandler;
 import cn.taike.mongo.recognition.handler.PaperRecognitionHandler;
+import cn.taike.mongo.recognition.protocol.RecognitionDetail;
 import cn.taike.mongo.recognition.web.RecognitionController;
+import com.google.common.collect.Lists;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -77,5 +80,44 @@ public class RecognitionService {
         }
 
 
+    }
+
+    // get list
+    public List<RecognitionController.ResponseList> getLists(Long userId) {
+
+        List<RecognitionController.ResponseList> list = Lists.newArrayList();
+
+        List<String> paperIdList = paperRecognitionRepository.selectDistinctPaperId(userId);
+        paperIdList.forEach(paperId -> {
+            Optional<String> paperNameOptional = paperRecognitionRepository.selectDistinctPaperName(userId, paperId);
+            if (paperNameOptional.isPresent()) {
+                String paperName = paperNameOptional.get();
+                RecognitionController.ResponseList response = new RecognitionController.ResponseList(userId, paperId, paperName);
+                list.add(response);
+            }
+        });
+
+        return list;
+    }
+
+    public List<RecognitionDetail> getDetail(Long userId, String paperId) {
+
+        List<RecognitionDetail> resultList = Lists.newArrayList();
+        List<PaperRecognitionEntity> entities = paperRecognitionRepository.findByUserIdAndPaperId(userId, paperId);
+        for (PaperRecognitionEntity entity : entities) {
+            RecognitionDetail detail = new RecognitionDetail();
+
+            detail.setUser_id(userId);
+            detail.setPaper_id(paperId);
+            detail.setPage_id(entity.getPageId());
+            detail.setPaper_name(entity.getPaperName());
+            detail.setTask_id(entity.getTaskId());
+            detail.setQas(entity.getRecQas());
+            detail.setSub_img_key(entity.getRecImages());
+            detail.setEvaluation(entity.getEvaluation());
+
+            resultList.add(detail);
+        }
+        return resultList;
     }
 }
