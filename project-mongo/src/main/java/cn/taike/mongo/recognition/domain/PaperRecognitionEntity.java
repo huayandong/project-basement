@@ -29,10 +29,21 @@ public class PaperRecognitionEntity {
     @Column
     private String pageId;
     @Column
+    private String paperName;
+    @Column
     private String taskId;
 
     @Column(columnDefinition = "TEXT")
+    private String devRecognition;
+    @Column(columnDefinition = "TEXT")
+    private String devWords;
+    @Column(columnDefinition = "TEXT")
+    private String recImages;
+    @Column(columnDefinition = "TEXT")
     private String recQas;
+
+    @Column(columnDefinition = "TEXT")
+    private String evaluation;
 
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     private DateTime createTime;

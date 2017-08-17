@@ -3,6 +3,7 @@ package cn.taike.mongo.recognition.web;
 import cn.taike.mongo.recognition.service.RecognitionService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by huayandong on 17/8/14.
@@ -60,6 +62,11 @@ public class RecognitionController {
         private String pageId;
 
         private String taskId;
+
+        private String wrap_info;
+        private String words;
+
+        private Map<String, String> sub_img_keys = Maps.newHashMap();
         private List<QuestionAndAnswer> qas = Lists.newArrayList();
     }
 
@@ -68,6 +75,11 @@ public class RecognitionController {
         private Boolean result_right;
         private Double result_accuracy;
         private String result_detail;
+
+        private String question_id;
+        private String predict;
+        private String type;
+        private List<String> locations = Lists.newArrayList();
     }
 
 }
