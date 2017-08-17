@@ -37,11 +37,11 @@ public class RecognitionController {
         try {
             Long userId = userTokenHandler.exchangeUserId(token);
             recognitionService.submitTaskRecognition(userId, request.getImageUrl());
-            return ResponseEntity.ok().build();
+            return ResponseEntity.ok();
 
         } catch (IllegalUserTokenException e) {
             log.error("paper submit img, user token error.", e);
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED);
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         } catch (Exception e) {
             log.error("paper, submit recognition image error.", e);
             return ResponseEntity.badRequest().build();
@@ -99,12 +99,11 @@ public class RecognitionController {
     public Object queryRecognitionList(@RequestParam(value = "access_token") String token) {
         try {
             Long userId = userTokenHandler.exchangeUserId(token);
-            List<ResponseList> result = recognitionService.getLists(userId);
-            return result;
+            return recognitionService.getLists(userId);
 
         } catch (IllegalUserTokenException e) {
             log.error("paper, user token error.", e);
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED);
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         } catch (Exception e) {
             log.error("paper, get recognition list error.", e);
             return ResponseEntity.badRequest().build();
@@ -126,17 +125,17 @@ public class RecognitionController {
     }
 
 
-    // app get recognition drtail
+    // app get recognition detail
     @RequestMapping(value = "/app/recognition/detail", method = RequestMethod.GET)
     public Object queryRecognitionDetail(@RequestParam(value = "access_token") String token,
                                          @RequestBody ResponseList param) {
         try {
             Long userId = userTokenHandler.exchangeUserId(token);
-            List<RecognitionDetail> resultList = recognitionService.getDetail(userId, param.getPaper_id());
-            return resultList;
+            return recognitionService.getDetail(userId, param.getPaper_id());
+
         } catch (IllegalUserTokenException e) {
             log.error("paper, user token error.", e);
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED);
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         } catch (Exception e) {
             log.error("paper, get recognition detail error.", e);
             return ResponseEntity.badRequest().build();

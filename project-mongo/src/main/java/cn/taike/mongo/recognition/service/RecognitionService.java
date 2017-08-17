@@ -100,6 +100,7 @@ public class RecognitionService {
         return list;
     }
 
+    // get detail
     public List<RecognitionDetail> getDetail(Long userId, String paperId) {
 
         List<RecognitionDetail> resultList = Lists.newArrayList();
