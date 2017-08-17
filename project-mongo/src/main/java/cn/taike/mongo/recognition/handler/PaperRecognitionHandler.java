@@ -1,9 +1,8 @@
 package cn.taike.mongo.recognition.handler;
 
 import cn.taike.mongo.recognition.app.TeProperties;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -30,20 +29,20 @@ public class PaperRecognitionHandler {
     //调用第三方接口
     public void submit(Long userId, String taskId, String imageUrl) {
         try {
+            log.debug("paper, begin submit task.");
+
             // body
-            RequestProtocol requestProtocol = new RequestProtocol(userId, taskId, imageUrl, teProperties.getRecognition());
-            ObjectMapper mapper = new ObjectMapper();
-            String body = mapper.writeValueAsString(requestProtocol);
+            RequestProtocol body = new RequestProtocol(userId, taskId, imageUrl, teProperties.getCallbackUrl());
 
             // header
             HttpHeaders header = new HttpHeaders();
             header.setContentType(MediaType.APPLICATION_JSON);
 
             // request
-            HttpEntity<String> request = new HttpEntity<>(body, header);
+            HttpEntity request = new HttpEntity<>(body, header);
 
             // response
-            ResponseEntity<String> response = restTemplate.exchange(teProperties.getRecognition(), HttpMethod.POST, request, String.class);
+            ResponseEntity<String> response = restTemplate.exchange(teProperties.getRecognitionUrl(), HttpMethod.POST, request, String.class);
             log.debug("paper, submit task success", response.getBody());
         } catch (Exception e) {
             log.error("Paper, submit task error.", e);
@@ -52,12 +51,18 @@ public class PaperRecognitionHandler {
 
 
     @Data
-    @AllArgsConstructor
+    @NoArgsConstructor
     public static class RequestProtocol {
         private Long userId;
         private String taskId;
         private String imageUrl;
         private String callbackUrl;
 
+        public RequestProtocol(Long userId, String taskId, String imageUrl, String callbackUrl) {
+            this.userId = userId;
+            this.taskId = taskId;
+            this.imageUrl = imageUrl;
+            this.callbackUrl = callbackUrl;
+        }
     }
 }
