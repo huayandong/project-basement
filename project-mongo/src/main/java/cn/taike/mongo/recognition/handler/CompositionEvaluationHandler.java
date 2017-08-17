@@ -1,7 +1,7 @@
 package cn.taike.mongo.recognition.handler;
 
-import cn.taike.mongo.recognition.app.DataFormatUtils;
-import cn.taike.mongo.recognition.app.TeProperties;
+import cn.taike.mongo.basement.context.DataFormatUtils;
+import cn.taike.mongo.basement.context.BasementProperties;
 import cn.taike.mongo.recognition.domain.PaperRecognitionEntity;
 import cn.taike.mongo.recognition.domain.PaperRecognitionRepository;
 import cn.taike.mongo.recognition.protocol.CompositionResponse;
@@ -16,7 +16,6 @@ import org.springframework.http.*;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-import java.net.URI;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -29,7 +28,7 @@ import java.util.Optional;
 public class CompositionEvaluationHandler {
 
     @Autowired
-    private TeProperties teProperties;
+    private BasementProperties basementProperties;
     @Autowired
     private PaperRecognitionRepository paperRecognitionRepository;
 
@@ -48,7 +47,7 @@ public class CompositionEvaluationHandler {
     public void evaluation(Long userId, String paperId, String pageId, String text) {
         try {
             // url
-            String url = teProperties.getEvaluationUrl() + "/api/v1";
+            String url = basementProperties.getEvaluationUrl() + "/api/v1";
 
             // body
             String body = "{\"text\":\" " + text + "\"}";
@@ -57,7 +56,7 @@ public class CompositionEvaluationHandler {
             HttpHeaders head = new HttpHeaders();
             head.setContentType(MediaType.APPLICATION_JSON);
 
-            String authString = teProperties.getEvaluationUserName() + ":" + teProperties.getEvaluationPassword();
+            String authString = basementProperties.getEvaluationUserName() + ":" + basementProperties.getEvaluationPassword();
             String authCode = Base64.encodeBase64String(authString.getBytes());
             head.set("Authorization", "Basic " + authCode);
 
@@ -84,13 +83,13 @@ public class CompositionEvaluationHandler {
     public void confirmEvaluation(Long userId, String paperId, String pageId, String confirmId) {
         try {
             // url
-            String url = teProperties.getEvaluationUrl() + confirmId;
+            String url = basementProperties.getEvaluationUrl() + confirmId;
 
             // head
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_JSON);
 
-            String authString = teProperties.getEvaluationUserName() + ":" + teProperties.getEvaluationPassword();
+            String authString = basementProperties.getEvaluationUserName() + ":" + basementProperties.getEvaluationPassword();
             String authCode = Base64.encodeBase64String(authString.getBytes());
             headers.set("Authorization", "Basic " + authCode);
 

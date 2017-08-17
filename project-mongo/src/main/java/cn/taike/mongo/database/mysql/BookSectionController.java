@@ -1,12 +1,8 @@
-package cn.taike.mongo.mysql;
+package cn.taike.mongo.database.mysql;
 
-import cn.taike.mongo.syj.BookSectionLabelService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 /**
  * Created by huayandong on 17/7/27.
@@ -25,7 +21,7 @@ public class BookSectionController {
             bookSection.setProjectName("/幼儿园课程/一起来刷牙");
             bookSection.setCover("/cover/一起来刷牙.jpg");
             bookSection.setType("STUDENT");
-            bookSectionJpaRepository.save(bookSection);
+//            bookSectionJpaRepository.
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -1,4 +1,4 @@
-package cn.taike.mongo.recognition.app;
+package cn.taike.mongo.basement.context;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;

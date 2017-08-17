@@ -1,6 +1,6 @@
 package cn.taike.mongo.recognition.handler;
 
-import cn.taike.mongo.recognition.app.TeProperties;
+import cn.taike.mongo.basement.context.BasementProperties;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,7 +18,7 @@ import org.springframework.web.client.RestTemplate;
 public class PaperRecognitionHandler {
 
     @Autowired
-    private TeProperties teProperties;
+    private BasementProperties basementProperties;
 
     private RestTemplate restTemplate;
 
@@ -32,7 +32,7 @@ public class PaperRecognitionHandler {
             log.debug("paper, begin submit task.");
 
             // body
-            RequestProtocol body = new RequestProtocol(userId, taskId, imageUrl, teProperties.getCallbackUrl());
+            RequestProtocol body = new RequestProtocol(userId, taskId, imageUrl, basementProperties.getCallbackUrl());
 
             // header
             HttpHeaders header = new HttpHeaders();
@@ -42,7 +42,7 @@ public class PaperRecognitionHandler {
             HttpEntity request = new HttpEntity<>(body, header);
 
             // response
-            ResponseEntity<String> response = restTemplate.exchange(teProperties.getRecognitionUrl(), HttpMethod.POST, request, String.class);
+            ResponseEntity<String> response = restTemplate.exchange(basementProperties.getRecognitionUrl(), HttpMethod.POST, request, String.class);
             log.debug("paper, submit task success", response.getBody());
         } catch (Exception e) {
             log.error("Paper, submit task error.", e);

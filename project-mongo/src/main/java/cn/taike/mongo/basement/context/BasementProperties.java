@@ -1,4 +1,4 @@
-package cn.taike.mongo.recognition.app;
+package cn.taike.mongo.basement.context;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
 @Data
 @Component
 @ConfigurationProperties(prefix = "ti.paper")
-public class TeProperties {
+public class BasementProperties {
 
     @NotNull
     private String recognitionUrl;

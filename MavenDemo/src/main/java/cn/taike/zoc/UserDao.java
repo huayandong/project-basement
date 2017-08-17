@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository;
 public class UserDao {
 
     public void addDao() {
-        System.out.println("dao......");
+        System.out.println("jdbc......");
     }
 }

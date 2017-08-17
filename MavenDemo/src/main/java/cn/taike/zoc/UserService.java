@@ -39,7 +39,7 @@ public class UserService {
 
 //    @Autowired(required = false)
 //    @Qualifier(value = "userDao")
-//    private UserDao dao;
+//    private UserDao jdbc;
 
     public void fun() {
         System.out.println("service...");

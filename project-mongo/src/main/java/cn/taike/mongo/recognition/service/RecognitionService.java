@@ -1,6 +1,6 @@
 package cn.taike.mongo.recognition.service;
 
-import cn.taike.mongo.recognition.app.DataFormatUtils;
+import cn.taike.mongo.basement.context.DataFormatUtils;
 import cn.taike.mongo.recognition.domain.PaperRecognitionEntity;
 import cn.taike.mongo.recognition.domain.PaperRecognitionRepository;
 import cn.taike.mongo.recognition.handler.CompositionEvaluationHandler;

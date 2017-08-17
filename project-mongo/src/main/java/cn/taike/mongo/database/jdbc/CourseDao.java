@@ -1,4 +1,4 @@
-package cn.taike.mongo.nosql;
+package cn.taike.mongo.database.jdbc;
 
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.ArrayHandler;
@@ -18,12 +18,11 @@ import java.sql.SQLException;
 @Component
 public class CourseDao {
 
-    QueryRunner queryRunner = new QueryRunner();
-    private final Logger logger = LoggerFactory.getLogger(CourseDao.class);
+    private QueryRunner queryRunner = new QueryRunner();
 
     @Qualifier("dataSource")
     @Autowired
-    DataSource dataSource;
+    private DataSource dataSource;
 
     public void saveLessonName(String bookSectionId, String courseLevel, String courseType, String courseTypeV2) {
         try (Connection conn = dataSource.getConnection()) {
