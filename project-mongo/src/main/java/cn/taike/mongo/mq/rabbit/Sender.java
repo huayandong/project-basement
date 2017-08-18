@@ -10,7 +10,7 @@ import java.io.Serializable;
  */
 public class Sender extends BasicConnector {
 
-    public Sender(String queueName) throws IOException {
+    public Sender(String queueName) throws Exception {
         super(queueName);
     }
 

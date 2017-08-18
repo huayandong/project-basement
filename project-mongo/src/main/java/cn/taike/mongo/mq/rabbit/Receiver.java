@@ -14,7 +14,7 @@ import java.io.IOException;
 public class Receiver extends BasicConnector implements Runnable, Consumer {
 
 
-    public Receiver(String queueName) throws IOException {
+    public Receiver(String queueName) throws Exception {
         super(queueName);
     }
 

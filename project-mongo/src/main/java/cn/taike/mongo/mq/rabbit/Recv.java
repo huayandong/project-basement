@@ -6,6 +6,7 @@ import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.QueueingConsumer;
 
 import java.io.IOException;
+import java.util.concurrent.TimeoutException;
 
 /**
  * Created by huayandong on 17/8/18.
@@ -14,7 +15,7 @@ public class Recv {
 
     private static final String QUEUE_NAME = "queue";
 
-    public static void main(String[] args) throws IOException, InterruptedException {
+    public static void main(String[] args) throws IOException, InterruptedException, TimeoutException {
 
         ConnectionFactory factory = new ConnectionFactory();
         Connection connection = factory.newConnection();

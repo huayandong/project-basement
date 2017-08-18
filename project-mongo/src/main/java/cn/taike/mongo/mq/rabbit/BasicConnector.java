@@ -5,6 +5,7 @@ import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 
 import java.io.IOException;
+import java.util.concurrent.TimeoutException;
 
 /**
  * Created by huayandong on 17/8/18.
@@ -15,7 +16,7 @@ public class BasicConnector {
     protected Connection connection;
     protected String queueName;
 
-    public BasicConnector(String queueName) throws IOException {
+    public BasicConnector(String queueName) throws IOException, TimeoutException {
         this.queueName = queueName;
 
         // open connection

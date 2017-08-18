@@ -28,7 +28,7 @@ public class Send {
             channel.close();
             connection.close();
 
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

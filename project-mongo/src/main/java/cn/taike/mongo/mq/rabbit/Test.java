@@ -1,13 +1,11 @@
 package cn.taike.mongo.mq.rabbit;
 
-import java.io.IOException;
-
 /**
  * Created by huayandong on 17/8/18.
  */
 public class Test {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws Exception {
         Receiver receiver = new Receiver("testQueue");
         Thread thread = new Thread(receiver);
         thread.start();
