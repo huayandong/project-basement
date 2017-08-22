@@ -4,6 +4,7 @@ import cn.taike.mongo.basement.context.DataFormatUtils;
 import cn.taike.mongo.basement.context.BasementProperties;
 import cn.taike.mongo.recognition.domain.PaperRecognitionEntity;
 import cn.taike.mongo.recognition.domain.PaperRecognitionRepository;
+import cn.taike.mongo.recognition.event.HandConfirmEvaluationMessage;
 import cn.taike.mongo.recognition.protocol.CompositionResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.tomcat.util.codec.binary.Base64;
@@ -12,6 +13,8 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.context.ApplicationEventPublisherAware;
 import org.springframework.http.*;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
@@ -25,12 +28,14 @@ import java.util.Optional;
  */
 @Slf4j
 @Component
-public class CompositionEvaluationHandler {
+public class CompositionEvaluationHandler implements ApplicationEventPublisherAware {
 
     @Autowired
     private BasementProperties basementProperties;
     @Autowired
     private PaperRecognitionRepository paperRecognitionRepository;
+
+    private ApplicationEventPublisher applicationEventPublisher;
 
     private static final String SPLIT_REGEX = "<br />\\r\\n";
     private static final String ORIGINAL_ID = "original";
@@ -42,6 +47,11 @@ public class CompositionEvaluationHandler {
                 .setConnectTimeout(30_000)
                 .setReadTimeout(30_000)
                 .build();
+    }
+
+    @Override
+    public void setApplicationEventPublisher(ApplicationEventPublisher applicationEventPublisher) {
+        this.applicationEventPublisher = applicationEventPublisher;
     }
 
     public void evaluation(Long userId, String paperId, String pageId, String text) {
@@ -70,7 +80,10 @@ public class CompositionEvaluationHandler {
             if (Objects.equals(response.getStatusCode(), HttpStatus.ACCEPTED)) {
 
                 // send ali ons queue
-                String id = response.getHeaders().getLocation().getPath();
+                String confirmId = response.getHeaders().getLocation().getPath();
+
+                // 发送 spring application event
+                applicationEventPublisher.publishEvent(new HandConfirmEvaluationMessage(userId, paperId, pageId, confirmId));
 
 
             }
