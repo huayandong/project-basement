@@ -1,5 +1,7 @@
 package cn.taike.mongo.event;
 
+import cn.taike.mongo.event.msg.JsonCreateMessage;
+import lombok.Data;
 import org.joda.time.DateTime;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.ApplicationEventPublisherAware;
@@ -19,10 +21,34 @@ public class SendMessageService implements ApplicationEventPublisherAware {
     }
 
     // send event
-    public void sendMessageService() {
+    public UserEvent sendMessageService() {
         System.out.println("start send event ...");
         System.out.println("时间1: " + DateTime.now());
 
-        applicationEventPublisher.publishEvent(new JsonCreateMessage("json: assert this is json. ", "student"));
+        UserEvent userEvent = new UserEvent();
+        userEvent.setJson("json: assert this is json.");
+        userEvent.setJsonType("student");
+
+        applicationEventPublisher.publishEvent(new JsonCreateMessage(userEvent.getJson(), userEvent.getJsonType()));
+
+        return userEvent;
     }
+
+
+    // get event
+    public void getEvent(String json, String jsonType) {
+
+        System.out.println("jsonType: " + jsonType);
+        System.out.println("json: " + json);
+
+        System.out.println("完成事件，事件3: " + DateTime.now());
+    }
+
+    @Data
+    public static class UserEvent {
+        private String json;
+        private String jsonType;
+
+    }
+
 }

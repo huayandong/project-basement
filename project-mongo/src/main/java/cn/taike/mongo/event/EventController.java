@@ -17,8 +17,7 @@ public class EventController {
     @RequestMapping(value = "/event/test", method = RequestMethod.POST)
     public Object eventController() {
 
-        sendMessageService.sendMessageService();
-        return ResponseEntity.ok().build();
+        return sendMessageService.sendMessageService();
 
     }
 

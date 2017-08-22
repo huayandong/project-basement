@@ -15,6 +15,10 @@ public class HandConfirmEvaluationMessage extends MessageEvent {
 
     public HandConfirmEvaluationMessage(Long userId, String paperId, String pageId, String confirmId) {
         super(confirmId);
+        this.userId = userId;
+        this.paperId = paperId;
+        this.pageId = pageId;
+        this.confirmId = confirmId;
     }
 
 }
