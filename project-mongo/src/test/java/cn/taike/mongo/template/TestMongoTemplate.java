@@ -26,5 +26,10 @@ public class TestMongoTemplate {
 
         studentService.addStudent();
 
+        studentService.addBookSection();
+
+        studentService.findAll();
+
+        studentService.findByName("002.funny.xlsx");
     }
 }
