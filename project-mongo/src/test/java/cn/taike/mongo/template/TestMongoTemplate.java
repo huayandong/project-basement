@@ -34,4 +34,9 @@ public class TestMongoTemplate {
 
         studentService.findByPage();
     }
+
+    @Test
+    public void testMongoAndMySql() {
+        studentService.saveMySqlAndMongo();
+    }
 }

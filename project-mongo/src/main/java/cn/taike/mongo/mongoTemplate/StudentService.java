@@ -1,5 +1,9 @@
 package cn.taike.mongo.mongoTemplate;
 
+import cn.taike.mongo.mongoTemplate.both.PaperEntity;
+import cn.taike.mongo.mongoTemplate.both.PaperMongoRepository;
+import cn.taike.mongo.mongoTemplate.both.PaperMysqlRepository;
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -21,6 +25,34 @@ public class StudentService {
 
     @Autowired
     private BookSectionMongoRepository bookSectionMongoRepository;
+
+    @Autowired
+    private PaperMongoRepository paperMongoRepository;
+
+    @Autowired
+    private PaperMysqlRepository paperMysqlRepository;
+
+    public void saveMySqlAndMongo() {
+        System.out.println("start print ...");
+
+        PaperEntity paperEntity = new PaperEntity();
+
+        paperEntity.setId(11123L);
+        paperEntity.setPaperName("英语学习");
+        paperEntity.setPageId("1");
+        paperEntity.setPaperId("BOXFISH");
+        paperEntity.setQuestions("这是问题");
+        paperEntity.setAnswer("这是答案");
+        DateTime nowTime = DateTime.now();
+        paperEntity.setCreateTime(nowTime);
+        paperEntity.setUpdateTime(nowTime);
+
+        paperMongoRepository.save(paperEntity);
+        System.out.println("save mongo ...");
+
+        paperMysqlRepository.save(paperEntity);
+        System.out.println("save mysql ...");
+    }
 
     public void addStudent() {
 
