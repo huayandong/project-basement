@@ -112,7 +112,7 @@ public class PaperEntity {
       password: boxfish123
       driver-class-name: com.mysql.jdbc.Driver
       
-      initial-size: 1                       // ⏬数据库连接池配置信息
+      initial-size: 1                       // ⏬ 数据库连接池配置信息
       max-active: 20
       max-idle: 20
       test-on-connect: true
@@ -122,7 +122,7 @@ public class PaperEntity {
       min-evictable-idle-time-millis: 3600000
 
 
-spring.jpa:                                 // ⏬hibernate配置信息
+spring.jpa:                                 // ⏬ hibernate配置信息
     show-sql: true
     generate-ddl: true
     hibernate.ddl-auto: update
@@ -230,3 +230,7 @@ public class UserEntity {
 
 }
 </code></pre>
+
+## 10.Microsoft Service
+
+## 11.mq
