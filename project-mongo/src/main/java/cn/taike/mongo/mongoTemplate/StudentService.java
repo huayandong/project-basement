@@ -1,6 +1,10 @@
 package cn.taike.mongo.mongoTemplate;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -48,6 +52,19 @@ public class StudentService {
         allList.forEach(bookSectionEntity -> {
             System.out.println("bookSectionName: " + bookSectionEntity.getBookName());
         });
+    }
+
+
+    public void findByPage() {
+        Pageable pageable = new PageRequest(0, 2, Sort.Direction.DESC, "bookName");
+        Page<BookSectionEntity> pages = bookSectionMongoRepository.findAll(pageable);
+
+        List<BookSectionEntity> pageContent = pages.getContent();
+        System.out.println("count: " + pageContent);
+        long totalElements = pages.getTotalElements();   // 查询到的元素总个数
+        int totalPages = pages.getTotalPages();          // 总页数
+        int currentPageNumber = pages.getNumber();       // 当前页
+
     }
 
     public void findByName(String bookName) {

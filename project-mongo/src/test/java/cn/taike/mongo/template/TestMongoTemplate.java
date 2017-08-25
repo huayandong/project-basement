@@ -24,12 +24,14 @@ public class TestMongoTemplate {
     @Test
     public void testMongoAddEntity() {
 
-        studentService.addStudent();
+//        studentService.addStudent();
+//
+//        studentService.addBookSection();
+//
+//        studentService.findAll();
+//
+//        studentService.findByName("002.funny.xlsx");
 
-        studentService.addBookSection();
-
-        studentService.findAll();
-
-        studentService.findByName("002.funny.xlsx");
+        studentService.findByPage();
     }
 }
