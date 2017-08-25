@@ -67,3 +67,166 @@ public class MyTimer {
 ## 8.Java8
 8.1 Java8中stream的使用;<br/>
 8.2 Java8中函数式接口的使用;<br/>
+
+## 9.Spring Data的使用
+9.1 Spring Data Mongodb<br />
+(1).暂不使用权限的配置方式，在<code>.yml</code>配置文件中添加配置:<code>spring.data.mongodb.uri: mongodb://127.0.0.1:27017/basement</code>;<br/>
+(2).创建实体类，使用spring提供的注解实现实体类与collection的映射:<br/>
+<pre><code>import lombok.Data;
+import org.hibernate.annotations.Type;
+import org.joda.time.DateTime;
+import org.springframework.data.annotation.TypeAlias;
+import org.springframework.data.mongodb.core.index.CompoundIndex;
+import org.springframework.data.mongodb.core.index.CompoundIndexes;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+import javax.persistence.Id;
+
+@Data
+@Document(collection = "paper_collection")                                       // 对应mongodb数据库中的集合名称
+@TypeAlias("PaperRecognition")
+@CompoundIndexes(                                                                // 向集合中添加索引
+        @CompoundIndex(name = "index_id_paperName_paperId", def = "{'id':1,'paperName':1,'paperId':1}", unique = true)
+)
+public class PaperEntity {
+
+    @Id
+    private Long id;
+
+    private String paperName;
+
+    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")      // 在实体类中使用joda.time需要使用注解指定对应的类型
+    private DateTime createTime;
+    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+    private DateTime updateTime;
+}
+</code></pre>
+(3).定义接口，继承<code>MongoRepository<PaperEntity, Long></code>即可;<br />
+
+9.2 Spring Data Jpa<br />
+(1).在<code>.yml</code>配置文件中添加基本的数据库连接信息之外，还要添加<code>hibernate</code>的配置信息和连接池的配置信息;<br />
+<pre><code>spring:
+  datasource:
+      url: jdbc:mysql://127.0.0.1:3306/basement?useUnicode=true&characterEncoding=utf8
+      username: root
+      password: boxfish123
+      driver-class-name: com.mysql.jdbc.Driver
+      
+      initial-size: 1                       // ⏬数据库连接池配置信息
+      max-active: 20
+      max-idle: 20
+      test-on-connect: true
+      test-while-idle: true
+      validation-query: SELECT 1
+      timeBetweenEvictionRunsMillis: 3600000
+      min-evictable-idle-time-millis: 3600000
+
+
+spring.jpa:                                 // ⏬hibernate配置信息
+    show-sql: true
+    generate-ddl: true
+    hibernate.ddl-auto: update
+    hibernate.naming_strategy: org.hibernate.cfg.ImprovedNamingStrategy
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+</code></pre>
+(2).创建与变关系映射的实体类:<br />
+<pre><code>import lombok.Data;
+import org.hibernate.annotations.Type;
+import org.joda.time.DateTime;
+
+import javax.persistence.*;
+
+@Data
+@Entity
+@Table(
+        name = "paper_table_test",
+        indexes = {
+                @Index(name = "index_userId_paperId_pageId", columnList = "userId,paperId,pageId", unique = true)
+        }
+)
+public class PaperRecognitionEntity {
+    @Id                                 // 标识主键
+    @GeneratedValue                     // 标识主键自增
+    private Long id;
+
+    @Column                             // 标识数据表中的列:默认将Java中的驼峰命名转换成下划线间隔
+    private Long userId;
+
+    @Column(columnDefinition = "TEXT")  // 标识数据表中文本的存储格式
+    private String devRecognition;
+    @Column(columnDefinition = "TEXT")
+
+    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")         // joda.time时间格式
+    private DateTime createTime;
+    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+    private DateTime updateTime;
+}
+</code></pre>
+(3).定义接口，继承<code>JpaRepository<PaperRecognitionEntity, Long></code>即可;<br />
+
+9.3 使用Spring Data实现分页查询:<br />
+<pre><code>
+    public void findByPage() {
+        Pageable pageable = new PageRequest(0, 2, Sort.Direction.DESC, "bookName");     // jpa提供的分页接口，参数为:(起始页，每页显示记录数，排序(升/降)，排序依靠的字段）
+        Page<BookSectionEntity> pages = bookSectionMongoRepository.findAll(pageable);
+
+        List<BookSectionEntity> pageContent = pages.getContent();
+        System.out.println("count: " + pageContent);
+        long totalElements = pages.getTotalElements();                                  // 查询到的元素总个数
+        int totalPages = pages.getTotalPages();                                         // 总页数
+        int currentPageNumber = pages.getNumber();                                      // 当前页
+
+    }
+</code></pre>
+
+9.4 当mongoDB与mysql使用同一个实体类的时候:<br />
+(1).在启动类中添加注解配置:
+<pre><code>import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.FilterType;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
+import org.springframework.scheduling.annotation.EnableScheduling;
+
+@SpringBootApplication
+@EnableScheduling
+@EnableJpaRepositories(includeFilters = {@ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = org.springframework.data.jpa.repository.JpaRepository.class)})
+@EnableMongoRepositories(includeFilters = {@ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = org.springframework.data.mongodb.repository.MongoRepository.class)})
+public class MongoApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(MongoApplication.class, args);
+    }
+}
+</code></pre>
+(2).在实体类中只需要同时添加mongo和mysql的注解即可
+<pre><code>import lombok.Data;
+import org.hibernate.annotations.Type;
+import org.joda.time.DateTime;
+import org.springframework.data.annotation.TypeAlias;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+
+@Data
+
+@Document(collection = "UserCollection")
+@TypeAlias("User")
+
+@Entity
+@Table(name = "test_table")
+public class UserEntity {
+
+    @Id
+    private Long id;
+    private String name;
+
+    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+    private DateTime dateTime;
+
+}
+</code></pre>

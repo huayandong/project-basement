@@ -142,11 +142,11 @@
         </dependency>
 
         <!-- Aliyun -->
-        <dependency>
-            <groupId>com.aliyun.openservices</groupId>
-            <artifactId>ons-client</artifactId>
-            <version>1.2.4</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.aliyun.openservices</groupId>-->
+            <!--<artifactId>ons-client</artifactId>-->
+            <!--<version>1.2.4</version>-->
+        <!--</dependency>-->
 
         <!--javax.inject-->
         <dependency>
