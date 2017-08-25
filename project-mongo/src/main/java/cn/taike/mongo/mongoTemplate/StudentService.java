@@ -9,6 +9,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,6 +34,18 @@ public class StudentService {
 
     @Autowired
     private PaperMysqlRepository paperMysqlRepository;
+
+    @Autowired
+    private MongoTemplate mongoTemplate;
+
+    public List<String> testMongoTemplate() {
+        Query query = new Query();
+        query.addCriteria(Criteria.where("paperId").is("BOXFISH"));
+        long count = mongoTemplate.count(query, PaperEntity.class);
+        System.out.println(count);
+        return null;
+
+    }
 
     public void saveMySqlAndMongo() {
         System.out.println("start print ...");

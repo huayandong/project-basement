@@ -39,4 +39,9 @@ public class TestMongoTemplate {
     public void testMongoAndMySql() {
         studentService.saveMySqlAndMongo();
     }
+
+    @Test
+    public void testMongoQuery() {
+        studentService.testMongoTemplate();
+    }
 }
