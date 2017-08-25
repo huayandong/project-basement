@@ -4,10 +4,13 @@ import lombok.Data;
 import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 import org.springframework.data.annotation.TypeAlias;
+import org.springframework.data.mongodb.core.index.CompoundIndex;
+import org.springframework.data.mongodb.core.index.CompoundIndexes;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Index;
 import javax.persistence.Table;
 
 /**
@@ -16,9 +19,17 @@ import javax.persistence.Table;
 @Data
 @Document(collection = "paper_collection")
 @TypeAlias("PaperRecognition")
+@CompoundIndexes(
+        @CompoundIndex(name = "index_id_paperName_paperId", def = "{'id':1,'paperName':1,'paperId':1}", unique = true)
+)
 
 @Entity
-@Table(name = "table_paper")
+@Table(
+        name = "table_paper",
+        indexes = {
+                @Index(name = "index_paperName_paperId", columnList = "paperName,paperId", unique = true)
+        }
+)
 public class PaperEntity {
 
     @Id
