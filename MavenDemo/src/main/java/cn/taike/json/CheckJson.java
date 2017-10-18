@@ -1,6 +1,8 @@
 package cn.taike.json;
 
+import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
@@ -25,7 +27,10 @@ public class CheckJson {
 
         // 1.
         try {
-            mapper.readTree(jsonStr);
+            JsonNode jsonNode = mapper.readTree(jsonStr);
+            return jsonNode != null;
+        } catch (JsonParseException e) {
+            return false;
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -50,11 +55,12 @@ public class CheckJson {
 
     public static void main(String[] args) {
 
-//        String json = toJson();
+        String json = toJson();
+//        String json = "";
+//        String json = "{\"abc\":\"123\"}";
 
-        String json = "{\"abc\":\"123\"}";
         Boolean validJson = isValidJson(json);
-        System.out.println("is json:" + validJson);
+        System.out.println("is json valid:" + validJson);
     }
 
     @Data
