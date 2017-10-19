@@ -42,11 +42,6 @@ public class CheckJson {
 
     }
 
-    /**
-     * 再次测试提交，提交回滚
-     * @return
-     */
-
     public static String toJson() {
         TestUser user = new TestUser("zhangsan", "123");
         String s = null;
