@@ -53,11 +53,6 @@ public class CheckJson {
         return s;
     }
 
-    /**
-     *
-     * 测试提交，取消回滚
-     */
-
     public static void main(String[] args) {
 
         String json = toJson();
