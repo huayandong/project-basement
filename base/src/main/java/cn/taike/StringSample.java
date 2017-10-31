@@ -1,6 +1,9 @@
 package cn.taike;
 
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by huayandong on 17/9/11.
  */
@@ -8,7 +11,7 @@ public class StringSample {
 
     static String abc = "my name .is boxfish mani come .f";
 
-    public static void main(String[] args) {
+    public static void sampleString(String[] args) {
         int first = 20;
         int last = 24;
 
@@ -34,4 +37,24 @@ public class StringSample {
         System.out.println(nextPoint);
 
     }
+
+
+    public static void stringTrim() {
+
+        String str = "22, 33,44 , 55 ";
+        String[] split = str.split(",");
+        Map<String, Integer> indexMap = new HashMap<>();
+        indexMap.put("x", Integer.valueOf(split[0].trim()));
+        indexMap.put("y", Integer.valueOf(split[1].trim()));
+        indexMap.put("w", Integer.valueOf(split[2].trim()));
+        indexMap.put("h", Integer.valueOf(split[3].trim()));
+
+        System.out.println(indexMap);
+
+    }
+
+    public static void main(String[] args) {
+        stringTrim();
+    }
+
 }

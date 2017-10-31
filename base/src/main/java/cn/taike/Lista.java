@@ -2,6 +2,7 @@ package cn.taike;
 
 import com.google.common.collect.Lists;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
 
@@ -12,25 +13,36 @@ import static java.util.stream.Collectors.toList;
  */
 public class Lista {
 
+    public static void testListEmpty() {
+        List<String> strList = null;
+//        new ArrayList<>();
+        boolean empty = strList.isEmpty();
+        System.out.println("isEmpty:" + empty);
+    }
+
+
     public static void main(String[] args) {
-        List<String> list = Lists.newArrayList();
-        list.add("a");
-        list.add("a");
-        list.add("c");
-        list.add("c");
-        list.add("c");
-        list.add("f");
 
-        list.forEach(i -> System.out.println("1:" + i));
+        testListEmpty();
 
-        List<String> list2 = list.stream().distinct().collect(toList());
-        ListIterator<String> iterator = list2.listIterator();
-        while (iterator.hasNext()){
-            String id = iterator.next();
-            list.remove(id);
-        }
-
-//        list.removeAll(list2);
-        list.forEach(i -> System.out.println("3:" + i));
+//        List<String> list = Lists.newArrayList();
+//        list.add("a");
+//        list.add("a");
+//        list.add("c");
+//        list.add("c");
+//        list.add("c");
+//        list.add("f");
+//
+//        list.forEach(i -> System.out.println("1:" + i));
+//
+//        List<String> list2 = list.stream().distinct().collect(toList());
+//        ListIterator<String> iterator = list2.listIterator();
+//        while (iterator.hasNext()) {
+//            String id = iterator.next();
+//            list.remove(id);
+//        }
+//
+////        list.removeAll(list2);
+//        list.forEach(i -> System.out.println("3:" + i));
     }
 }
